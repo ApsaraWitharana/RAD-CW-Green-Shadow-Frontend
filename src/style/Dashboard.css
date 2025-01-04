@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.table-css{
+    @apply border border-gray-200;
+    @apply px-3 py-2;
+    @apply hover:bg-green-200 transition duration-500
+}
+.table-css:hover{
+    @apply cursor-pointer;
+}
+.item-card{
+    @apply p-5;
+    @apply cursor-pointer;
+
+}
