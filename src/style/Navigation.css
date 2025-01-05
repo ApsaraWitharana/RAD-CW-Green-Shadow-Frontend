@@ -7,35 +7,92 @@
     @apply hover:text-black rounded-md px-3 py-2 font-medium leading-tight;
 }
 
-/* General Layout */
+:root {
+    --bg-black-900: #f2f2fc;
+    --bg-black-100: #fdf9ff;
+    --bg-black-50: #e8dfec;
+    --text-black-900: #302e4d;
+    --text-black-700: #302e4d;
+    --skin-color: #1dd748;
+    --blue: rgba(51, 58, 51, 0.42);
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #070a0a;
+}
+/* Overall Layout */
 .layout {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: auto 1fr;
     min-height: 100vh;
+    background-color: #121212;
 }
 
 /* Top Navigation */
 .top-nav {
-    grid-column: span 2;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #2d3748;
-    color: #fff;
+    width: 100%;
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    color: #e0e0e0;
+    text-align: end;
+}
+
+.current-time {
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+    margin-top: auto;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    justify-self: end;
+    margin-top: 0;
+}
+
+.sign-in-btn {
+    margin-left: 15px;
+    background-color: #444;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sign-in-btn:hover {
+    background-color: #666;
 }
 
 /* Sidebar */
 .sidebar {
-    padding-top: 20px;
-    background-color: #1a202c;
-    height: calc(100vh - 60px);
-    position: sticky;
-    top: 60px;
+    width: 260px;
+    background-color: #1f1f1f;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #333;
+    color: #ccc;
+    min-height: 100vh;
+    font-size: 18px;
 }
-
-.sidebar ul {
+.icon {
+    min-width: 20px;
+    height: 20px;
+    line-height: 75px;
+    text-align: center;
+    margin-right: 5px;
+}
+.sidebar-links {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -44,21 +101,85 @@
 .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
     padding: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 .sidebar-link:hover {
-    background-color: #2d3748;
+    background-color: black;
+    color: var(--skin-color);
+}
+
+.sidebar-link IonIcon {
+    margin-right: 10px;
+    font-size: 1.5rem;
 }
 
 /* Main Content */
 .main-content {
+    flex: 1;
+    text-align: center;
     padding: 20px;
-    background-color: #f7fafc;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
 }
+
+.class-link{
+        font-family: "Bree Serif";
+        color: var(--skin-color);
+        margin-top: 15px;
+        font-size: 25px;
+}
+
+.sidebar-link:hover link::before,
+.sidebar-link .hovered link::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px black;
+    pointer-events: none;
+}
+
+.sidebar-link:hover link::after,
+.sidebar-link .hovered link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px black;
+    pointer-events: none;
+}
+.search {
+    width: 400px;
+    margin: 0 10px;
+}
+
+.search label {
+    width: 100%;
+}
+.search label input {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid var(--black2);
+    margin-top: 10px;
+}
+
+
