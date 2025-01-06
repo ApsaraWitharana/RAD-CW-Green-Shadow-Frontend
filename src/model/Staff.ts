@@ -4,7 +4,7 @@ export class Staff {
     lastName: string;
     designation: string;
     gender:string;
-    joinedDate: string;
+    joinDate: string;
     dob: string;
     addressLine1: string;
     addressLine2: string;
@@ -22,7 +22,7 @@ export class Staff {
         this.lastName = lastName;
         this.designation = designation;
         this.gender = gender;
-        this.joinedDate = joinedDate;
+        this.joinDate = joinedDate;
         this.dob = dob;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;

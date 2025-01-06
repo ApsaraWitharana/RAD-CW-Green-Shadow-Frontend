@@ -46,7 +46,7 @@ export const Staffs = () => {
         setLastName(staff.lastName);
         setDesignation(staff.designation);
         setGender(staff.gender);
-        setJoinDate(staff.joinedDate);
+        setJoinDate(staff.joinDate);
         setDob(staff.dob);
         setAddressLine1(staff.addressLine1);
         setAddressLine2(staff.addressLine2);
@@ -67,6 +67,7 @@ export const Staffs = () => {
 
     //delete staff
     function handleDeleteStaff(email:string) {
+        alert("Staff member delete successfully!!")
         dispatch(deleteStaff(email))
     }
     return (
