@@ -37,6 +37,7 @@ export const Staffs = () => {
         };
         dispatch(setStaff(newStaff));
         alert("Staff member added successfully!");
+        clearData();
     }
 
     //update staff
@@ -69,6 +70,26 @@ export const Staffs = () => {
     function handleDeleteStaff(email:string) {
         alert("Staff member delete successfully!!")
         dispatch(deleteStaff(email))
+
+    }
+    //clear data
+    function clearData(){
+        setId("");
+        setFirstName("");
+        setLastName("");
+        setDesignation("");
+        setGender("");
+        setJoinDate("");
+        setDob("");
+        setAddressLine1("");
+        setAddressLine2("");
+        setAddressLine3("");
+        setAddressLine4("");
+        setAddressLine5("");
+        setContactNumber("");
+        setEmail("");
+        setRole("");
+        setShowForm(true);
     }
     return (
         <div className="main">
