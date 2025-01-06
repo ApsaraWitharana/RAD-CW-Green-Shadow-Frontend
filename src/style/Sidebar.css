@@ -27,6 +27,7 @@
     transition: transform 0.3s ease;
     padding: 0;
     font-size: 18px;
+    margin-left: 0;
 }
 
 .sidebar.closed {

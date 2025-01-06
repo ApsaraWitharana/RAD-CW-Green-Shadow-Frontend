@@ -1,9 +1,9 @@
 import {createBrowserRouter, RouterProvider} from "react-router";
 import {SidebarProvider} from "./component/SidebarContext.tsx";
 import {RootLayout} from "./component/RootLayout.tsx";
-import {Dashboard} from "@mui/icons-material";
 import {Staffs} from "./pages/Staff.tsx";
 import {Error} from "./pages/Error.tsx";
+import {Dashboard} from "./pages/Dashboard.tsx";
 
 function App() {
   const routes = createBrowserRouter([

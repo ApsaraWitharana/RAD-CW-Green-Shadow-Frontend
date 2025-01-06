@@ -6,7 +6,9 @@
     width: 100%; /* Full width */
     border-collapse: collapse;
     border: 1px solid #D1D5DB;
+
 }
+
 .table td{
     color: white;
 }
