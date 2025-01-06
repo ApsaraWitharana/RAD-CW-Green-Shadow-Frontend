@@ -1,15 +1,17 @@
-
-import {Navigation} from "./Navigate.tsx";
-import {Outlet} from "react-router";
+import { useContext } from "react";
+import { Sidebar } from "./Sidebar";
+import { Outlet } from "react-router-dom";
+import {SidebarContext} from "./SidebarContext.tsx";
 
 export function RootLayout() {
-    return(
-        <>
-            <Navigation></Navigation>
-            <main className="p-4">
-                <Outlet></Outlet>
-            </main>
+    const { isSidebarOpen } = useContext(SidebarContext);
 
-        </>
+    return (
+        <div className="root-layout">
+            <Sidebar />
+            <div className={`content ${isSidebarOpen ? "with-sidebar" : ""}`}>
+                <Outlet />
+            </div>
+        </div>
     );
 }

@@ -1,16 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Navigation.css";
-import {
-    carOutline,
-    eyeOutline,
-    hammerOutline,
-    homeOutline,
-    leafOutline, logOutOutline,
-    mapOutline,
-    peopleOutline
-} from "ionicons/icons";
-import {IonIcon} from "@ionic/react";
+
 export function Navigation() {
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -28,6 +19,9 @@ export function Navigation() {
                     {/* Center Section */}
                     <ul className="flex text-white space-x-4">
                         <p className="class-link text-green-500">Green Shadow PVT(LTD)</p>
+                        <Link className="class-link" to='/add'></Link>
+                        <Link className="class-link" to='/delete'></Link>
+                        <Link className="class-link" to='/update'></Link>
                         <div className="search">
                             <label>
                                 <input type="text" placeholder="Search here.."/>
@@ -46,48 +40,6 @@ export function Navigation() {
                     </div>
                 </nav>
             </header>
-            {/* Sidebar */}
-            <aside className="sidebar">
-                <ul className="sidebar-links">
-                    <li><Link className="sidebar-link" to="/dashboard">
-                            <IonIcon className="icon" icon={homeOutline}/> Dashboard
-                        </Link>
-                    </li>
-                    <li><Link className="sidebar-link" to="/staff">
-                            <IonIcon className="icon" icon={peopleOutline}/> Staff
-                        </Link>
-                    </li>
-                    <li><Link className="sidebar-link" to="/field">
-                            <IonIcon className="icon" icon={mapOutline}/> Field
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="sidebar-link" to="/crop">
-                            <IonIcon className="icon" icon={leafOutline}/> Crop
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="sidebar-link" to="/equipment">
-                            <IonIcon className="icon" icon={hammerOutline}/> Equipment
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="sidebar-link" to="/vehicle">
-                            <IonIcon className="icon" icon={carOutline}/> Vehicle
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="sidebar-link" to="/monitoring">
-                            <IonIcon className="icon" icon={eyeOutline}/> Monitoring
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="sidebar-link" to="/logout">
-                            <IonIcon className="icon" icon={logOutOutline}/> Log Out
-                        </Link>
-                    </li>
-                </ul>
-            </aside>
         </div>
     );
 }

@@ -1,20 +1,18 @@
-
-import './App.css'
 import {createBrowserRouter, RouterProvider} from "react-router";
+import {SidebarProvider} from "./component/SidebarContext.tsx";
 import {RootLayout} from "./component/RootLayout.tsx";
-import { Error } from "./pages/Error";
-import {Dashboard} from "./pages/Dashboard.tsx";
+import {Dashboard} from "@mui/icons-material";
 import {Staff} from "./pages/Staff.tsx";
+import {Error} from "./pages/Error.tsx";
 
 function App() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <RootLayout/>,
+      element: <RootLayout />,
       children: [
-         { path: "/dashboard", element: <Dashboard/> },
-         { path: "/staff", element: <Staff/> },
-
+        { path: "/dashboard", element: <Dashboard /> },
+        { path: "/staff", element: <Staff /> },
       ],
       errorElement: <Error />,
     },
@@ -25,8 +23,10 @@ function App() {
   ]);
 
   return (
-      <RouterProvider router={routes} />
-  )
-}
 
-export default App
+      <SidebarProvider>
+        <RouterProvider router={routes} />
+      </SidebarProvider>
+  );
+}
+export default App;
