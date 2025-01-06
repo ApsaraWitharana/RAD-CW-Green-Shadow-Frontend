@@ -2,7 +2,7 @@ import  { useState } from "react";
 import "../style/Staff.css"
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setStaff,updateStaff} from "../slice/StaffSlice.ts";
+import {deleteStaff, setStaff, updateStaff} from "../slice/StaffSlice.ts";
 import {IonIcon} from "@ionic/react";
 import {Staff} from "../model/Staff.ts";
 
@@ -58,13 +58,16 @@ export const Staffs = () => {
         setRole(staff.role);
         setShowForm(true);
     }
-
     function UpdateStaff() {
         const updateStaffs ={id, firstName, lastName, designation, gender, joinDate, dob, addressLine1, addressLine2, addressLine3, addressLine4, addressLine5, contactNumber, email, role};
         dispatch(updateStaff(updateStaffs));
         alert("Staff member updated successfully!");
         setShowForm(false);
+    }
 
+    //delete staff
+    function handleDeleteStaff(email:string) {
+        dispatch(deleteStaff(email))
     }
     return (
         <div className="main">
@@ -208,15 +211,14 @@ export const Staffs = () => {
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.email}</td>
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.role}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <button className="text-blue-500 hover:text-blue-700 mr-2" title="Update"
+                                <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update"
                                         onClick={() => handleRowClick(staff)}>
                                     <IonIcon className="icon"/> Update
                                 </button>
-                                <button className="text-red-500 hover:text-red-700" title="Delete">
+                                <button className="text-red-500 hover:text-red-700" title="Delete" onClick={()=>handleDeleteStaff(staff.email)}>
                                     <IonIcon className="icon"/> Delete
                                 </button>
                             </td>
-
                         </tr>
                     ))}
                     </tbody>

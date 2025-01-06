@@ -22,9 +22,14 @@ const staffSlice = createSlice({
                 state.staffs[index] = action.payload;
             }
         },
+        deleteStaff: (state, action: PayloadAction<string>) => {
+          state.staffs = state.staffs.filter(
+              (staff) => staff.email !== action.payload
+          );
+        }
     },
 });
 
 
-export const {setStaff,updateStaff} = staffSlice.actions;
+export const {setStaff,updateStaff,deleteStaff} = staffSlice.actions;
 export default  staffSlice.reducer;
