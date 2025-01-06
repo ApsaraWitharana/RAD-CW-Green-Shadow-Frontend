@@ -26,7 +26,7 @@ export const Sidebar = () => {
             <div className="top-bar">
                 {/* Search Bar */}
                 <div className="search-bar">
-                    <p className="topic">Green Shadow PVT(LTD)</p>
+                    <p className="topic font-bold">Green Shadow PVT(LTD)</p>
                 </div>
                 <div className="date-time">
                     {currentTime.toLocaleDateString()} {currentTime.toLocaleTimeString()}

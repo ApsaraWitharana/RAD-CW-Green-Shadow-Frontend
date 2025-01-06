@@ -2,7 +2,7 @@ import {createBrowserRouter, RouterProvider} from "react-router";
 import {SidebarProvider} from "./component/SidebarContext.tsx";
 import {RootLayout} from "./component/RootLayout.tsx";
 import {Dashboard} from "@mui/icons-material";
-import {Staff} from "./pages/Staff.tsx";
+import {Staffs} from "./pages/Staff.tsx";
 import {Error} from "./pages/Error.tsx";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       element: <RootLayout />,
       children: [
         { path: "/dashboard", element: <Dashboard /> },
-        { path: "/staff", element: <Staff /> },
+        { path: "/staff", element: <Staffs /> },
       ],
       errorElement: <Error />,
     },
