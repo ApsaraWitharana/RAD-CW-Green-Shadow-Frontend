@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.table{
+    width: 100%; /* Full width */
+    border-collapse: collapse;
+    border: 1px solid #D1D5DB;
+}
+.table td{
+    color: white;
+}
+.table thead th{
+    color: gray;
+    background-color: #1f1f1f;
+}

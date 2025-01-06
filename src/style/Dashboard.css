@@ -2,16 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-.table-css{
-    @apply border border-gray-200;
-    @apply px-3 py-2;
-    @apply hover:bg-green-200 transition duration-500
-}
-.table-css:hover{
-    @apply cursor-pointer;
-}
-.item-card{
-    @apply p-5;
-    @apply cursor-pointer;
+/* Card Box */
+.cardBox {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 
+}
+/* Individual Card */
+.card {
+    background-color: #1f1f1f;
+    width: 200px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card .numbers {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.card .cardName {
+    font-size: 1rem;
+    color: #718096;
+}
+
+.iconBx {
+    font-size: 2rem;
+    color: #4fd1c5;
+}
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: black;
+    transition: 0.5s;
 }
