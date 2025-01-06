@@ -13,7 +13,6 @@ import {
 import {useEffect, useState} from "react";
 export const Sidebar = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
-
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentTime(new Date());
@@ -34,7 +33,6 @@ export const Sidebar = () => {
                 <img src="src/assets/alina.jpg" alt="User Profile"
                      className="profile-pic"/>
             </div>
-
     {/* Sidebar */
     }
     <aside className="sidebar">

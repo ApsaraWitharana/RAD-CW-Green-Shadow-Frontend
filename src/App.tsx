@@ -4,6 +4,7 @@ import {RootLayout} from "./component/RootLayout.tsx";
 import {Staffs} from "./pages/Staff.tsx";
 import {Error} from "./pages/Error.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
+import  {FieldForm} from "./pages/Field.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -13,6 +14,8 @@ function App() {
       children: [
         { path: "/dashboard", element: <Dashboard /> },
         { path: "/staff", element: <Staffs /> },
+        { path: "/field", element: <FieldForm /> },
+
       ],
       errorElement: <Error />,
     },
