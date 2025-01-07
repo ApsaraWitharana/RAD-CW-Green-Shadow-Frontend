@@ -1,6 +1,9 @@
 import "../style/FieldForm.css";
 import {IonIcon} from "@ionic/react";
 import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import {setField} from "../slice/FieldSlice.ts";
 
 export const FieldForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -8,6 +11,59 @@ export const FieldForm = () => {
         setShowForm(!showForm);
     };
 
+   // image preview
+    const [fieldImagePreview1, setFieldImagePreview1] = useState("");
+    const [fieldImagePreview2, setFieldImagePreview2] = useState("");
+    const handleImageChange1 = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setFieldImagePreview1(event.target.result); // Update the preview state for image 1
+            };
+            reader.readAsDataURL(file);
+            setFieldImage1(file); // Save the file itself to be stored in the state
+        } else {
+            setFieldImagePreview1(""); // Clear the preview if no file selected
+        }
+    };
+
+    const handleImageChange2 = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setFieldImagePreview2(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            setFieldImage2(file);
+        } else {
+            setFieldImagePreview2("");
+        }
+    };
+
+
+    const dispatch = useDispatch();
+    const [fieldCode, setFieldCode] = useState("");
+    const [fieldName, setFieldName] = useState("");
+    const [fieldLocation, setFieldLocation] = useState("");
+    const [extentSize,setExtentSize] = useState("");
+    const [fieldImage1, setFieldImage1] = useState("");
+    const [fieldImage2, setFieldImage2] = useState("");
+
+    const field= useSelector((state:RootState) =>state.field.fields);
+
+    //add field
+    function addField(e){
+        e.preventDefault();
+        const newField ={
+            fieldCode:fieldCode,fieldName:fieldName,
+            fieldLocation:fieldLocation,extentSize:extentSize,
+            fieldImage1:fieldImage1,fieldImage2:fieldImage2,
+        };
+        dispatch(setField(newField));
+        alert("Field member added successfully!!");
+    }
     return (
         <div className="main">
             {/* Navigation bar with "Add Field " button */}
@@ -25,21 +81,21 @@ export const FieldForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="code"/>
+                                       placeholder="code" onChange={(e) => setFieldCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Name</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="field Name"/>
+                                       placeholder="field Name" onChange={(e) => setFieldName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Location</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder='Location' />
+                                       placeholder='Location' onChange={(e) => setFieldLocation(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Extent Size</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
+                                <select className="w-full p-2 border border-gray-300 rounded-md" onChange={(e) => setExtentSize(e.target.value)}>
                                     <option value="">Select Size</option>
                                     <option value="1000">1000</option>
                                     <option value="2000">2000</option>
@@ -48,17 +104,37 @@ export const FieldForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange1}/>
+                                {/* Image Preview */}
+                                {fieldImagePreview1 && (
+                                    <div className="mt-4">
+                                        <img
+                                            src={fieldImagePreview1}
+                                            alt="Preview"
+                                            className="h-32 w-32 object-cover rounded-md"
+                                        />
+                                    </div>
+                                )}
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange2}/>
+                                {/* Image Preview */}
+                                {fieldImagePreview2 && (
+                                    <div className="mt-4">
+                                        <img
+                                            src={fieldImagePreview2}
+                                            alt="Preview"
+                                            className="h-32 w-32 object-cover rounded-md"
+                                        />
+                                    </div>
+                                )}
                             </div>
 
                         </div>
                         <button type="submit"
                                 className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-                                >Save
+                                onClick={addField}>Save
                         </button>
                         <button type="submit"
                                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
@@ -89,16 +165,21 @@ export const FieldForm = () => {
                         <th className="border border-gray-300 px-4 py-2">Actions</th>
                     </tr>
                     </thead>
-                    <tbody id="staffTableBody">
-                        <tr >
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
+                    <tbody id="fieldTableBody">
+                    {field.map((field) => (
+                        <tr key={field.fieldCode}>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.fieldCode}</td>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.fieldName}</td>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.fieldLocation}</td>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.extentSize}</td>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.fieldImage1 &&
+                                <img src={fieldImagePreview1} alt="Field Image 1"
+                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
+                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{field.fieldImage2 &&
+                                <img src={fieldImagePreview2} alt="Field Image 2"
+                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update">
+                            <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update">
                                     <IonIcon className="icon"/> Update
                                 </button>
                                 <button className="text-red-500 hover:text-red-700" title="Delete">
@@ -106,6 +187,7 @@ export const FieldForm = () => {
                                 </button>
                             </td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
