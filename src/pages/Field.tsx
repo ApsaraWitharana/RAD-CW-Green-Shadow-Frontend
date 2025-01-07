@@ -3,7 +3,7 @@ import {IonIcon} from "@ionic/react";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setField,updateField} from "../slice/FieldSlice.ts";
+import {deleteField, setField, updateField} from "../slice/FieldSlice.ts";
 import {Field} from "../model/Field.ts";
 
 export const FieldForm = () => {
@@ -48,7 +48,7 @@ export const FieldForm = () => {
     const [fieldCode, setFieldCode] = useState("");
     const [fieldName, setFieldName] = useState("");
     const [fieldLocation, setFieldLocation] = useState("");
-    const [extentSize,setExtentSize] = useState("");
+    const [extentSize, setExtentSize] = useState<number>(0);
     const [fieldImage1, setFieldImage1] = useState("");
     const [fieldImage2, setFieldImage2] = useState("");
     const field= useSelector((state:RootState) =>state.field.fields);
@@ -70,7 +70,7 @@ export const FieldForm = () => {
         setFieldCode(field.fieldCode);
         setFieldName(field.fieldName);
         setFieldLocation(field.fieldLocation);
-        setExtentSize(field.extentSize);
+        setExtentSize(Number(field.extentSize));
         setFieldImage1(field.fieldImage1);
         setFieldImage2(field.fieldImage2);
         setShowForm(true);
@@ -86,6 +86,12 @@ export const FieldForm = () => {
         alert("Updated Field successfully!!");
         setShowForm(false);
 
+    }
+
+    //delete field
+    function DeleteField(fieldCode:string){
+        alert("Field Deleted Successfully!!");
+        dispatch(deleteField(fieldCode));
     }
     return (
         <div className="main">
@@ -119,10 +125,10 @@ export const FieldForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Extent Size</label>
                                 <select className="w-full p-2 border border-gray-300 rounded-md" value={extentSize} onChange={(e) => setExtentSize(e.target.value)}>
-                                    <option value="">Select Size</option>
-                                    <option value="1000">1000</option>
-                                    <option value="2000">2000</option>
-                                    <option value="3000">3000</option>
+                                    <option value={0}>Select Size</option>
+                                    <option value={1000}>1000</option>
+                                    <option value={2000}>2000</option>
+                                    <option value={3000}>3000</option>
                                 </select>
                             </div>
                             <div>
@@ -197,7 +203,7 @@ export const FieldForm = () => {
                             <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update" onClick={()=> handleRowClick(field)}>
                                     <IonIcon className="icon"/> Update
                                 </button>
-                                <button className="text-red-500 hover:text-red-700" title="Delete">
+                                <button className="text-red-500 hover:text-red-700" title="Delete" onClick={() => DeleteField(field.fieldCode)}>
                                     <IonIcon className="icon"/> Delete
                                 </button>
                             </td>

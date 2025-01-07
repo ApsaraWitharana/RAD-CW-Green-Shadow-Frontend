@@ -21,9 +21,12 @@ const fieldSlice = createSlice({
             if (index !== -1) {
                 state.fields[index] = action.payload;
             }
+        },
+        deleteField: (state, action: PayloadAction<string>) => {
+            state.fields = state.fields.filter(
+                (field) => field.fieldCode !== action.payload);
         }
-
     },
 });
-export const {setField,updateField} = fieldSlice.actions;
+export const {setField,updateField,deleteField} = fieldSlice.actions;
 export default fieldSlice.reducer;
