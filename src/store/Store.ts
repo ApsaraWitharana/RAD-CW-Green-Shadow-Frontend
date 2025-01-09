@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import staffSlice from "../slice/StaffSlice.ts";
 import fieldSlice from "../slice/FieldSlice.ts";
+import cropSlice from "../slice/CropSlice.ts";
 
 const rootReducer = combineReducers({
     staff: staffSlice,
     field:fieldSlice,
+    crop:cropSlice
 
 });
 
