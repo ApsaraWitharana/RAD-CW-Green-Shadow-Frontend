@@ -6,6 +6,7 @@ import {Error} from "./pages/Error.tsx";
 import {Dashboard} from "./pages/Dashboard.tsx";
 import  {FieldForm} from "./pages/Field.tsx";
 import {CropForm} from "./pages/Crop.tsx";
+import {EquipmentForm} from "./pages/Equipment.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -17,7 +18,7 @@ function App() {
         { path: "/staff", element: <Staffs/> },
         { path: "/field", element: <FieldForm/> },
         { path: "/crop", element: <CropForm/> },
-
+        { path: "/equipment", element: <EquipmentForm/> },
       ],
       errorElement: <Error />,
     },
