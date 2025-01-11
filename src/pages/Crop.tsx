@@ -33,20 +33,19 @@ export const CropForm = () => {
     const [cropScientificName, setCropScientificName] = useState("");
     const [category, setCategory] = useState("");
     const [cropSeason, setCropSeason] = useState("");
-    const [fileCode, setFileCode] = useState("");
+    const [fieldCode, setFieldCode] = useState("");
     const [cropImage, setCropImage] = useState("");
     const crops = useSelector((state:RootState) => state.crop.crops);
 
     //add crop
     function AddCrop(e) {
         e.preventDefault();
-        const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fileCode};
+        const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fieldCode};
         dispatch(setCrop(newCrop));
         console.log(newCrop);
         alert("Crop was added Successfully!!.");
         clear();
         setShowForm(false);
-
     }
     //update crop
     function handleRowClick(crop:Crop){
@@ -56,12 +55,12 @@ export const CropForm = () => {
         setCropImage(crop.cropImage);
         setCategory(crop.category);
         setCropSeason(crop.cropSeason);
-        setFileCode(crop.fieldCode);
+        setFieldCode(crop.fieldCode);
         setShowForm(true);
     }
 
     function UpdateCrop(){
-        const updatedCrops = {cropCode, cropCommonName,cropScientificName,cropImage,category,cropSeason,fileCode};
+        const updatedCrops = {cropCode, cropCommonName,cropScientificName,cropImage,category,cropSeason,fieldCode};
         dispatch(updateCrop(updatedCrops));
         console.log(updatedCrops);
         alert("Update crop successfully!");
@@ -83,7 +82,7 @@ export const CropForm = () => {
         setCategory("");
         setCropImage("");
         setCropSeason("");
-        setFileCode("");
+        setFieldCode("");
     }
     return (
         <div className="main">
@@ -99,19 +98,26 @@ export const CropForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Code" value={cropCode} onChange={(e) => setCropCode(e.target.value)}/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                       placeholder="Code" value={cropCode}
+                                       onChange={(e) => setCropCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Common Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Common Name" value={cropCommonName} onChange={(e) => setCropCommonName(e.target.value)}/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                       placeholder="Common Name" value={cropCommonName}
+                                       onChange={(e) => setCropCommonName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Scientific Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Scientific Name" value={cropScientificName} onChange={(e) => setCropScientificName(e.target.value)}/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                       placeholder="Scientific Name" value={cropScientificName}
+                                       onChange={(e) => setCropScientificName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Category</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={category} onChange={(e) => setCategory(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={category}
+                                        onChange={(e) => setCategory(e.target.value)}>
                                     <option>Select Category</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -120,7 +126,8 @@ export const CropForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Section</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={cropSeason} onChange={(e) => setCropSeason(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={cropSeason}
+                                        onChange={(e) => setCropSeason(e.target.value)}>
                                     <option>Select Section</option>
                                     <option value="Section A">Section A</option>
                                     <option value="Section B">Section B</option>
@@ -129,7 +136,8 @@ export const CropForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={fileCode} onChange={(e) => setFileCode(e.target.value)} >
+                                <select className="w-full p-2 border border-gray-300 rounded-md"
+                                       value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}>
                                     <option>Select File</option>
                                     <option value="FED-001">FED-001</option>
                                     <option value="FED-002">FED-002</option>
@@ -138,7 +146,8 @@ export const CropForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange}/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"
+                                       onChange={handleImageChange}/>
                                 {cropImagePreview && (
                                     <div className="mt-4">
                                         <img src={cropImagePreview} alt="Preview"
@@ -147,8 +156,10 @@ export const CropForm = () => {
                                 )}
                             </div>
                         </div>
-                        <Button label="Save" onClick={AddCrop} className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateCrop} className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
+                        <Button label="Save" onClick={AddCrop}
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateCrop}
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
