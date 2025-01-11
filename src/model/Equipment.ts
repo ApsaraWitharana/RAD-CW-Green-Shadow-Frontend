@@ -1,17 +1,17 @@
 export class Equipment{
-     equipmentId :string
+     equipmentCode :string
      equipmentName:string
-     type :string
+     equipmentType :string
      status:string
      fieldCode:string
-     staffId:string
+     staffCode:string
 
-    constructor(equipmentId: string, equipmentName: string, type: string, status: string, fieldCode: string, staffId: string) {
-        this.equipmentId = equipmentId;
+    constructor(equipmentCode: string, equipmentName: string, equipmentType: string, status: string, fieldCode: string, staffCode: string) {
+        this.equipmentCode = equipmentCode;
         this.equipmentName = equipmentName;
-        this.type = type;
+        this.equipmentType = equipmentType;
         this.status = status;
         this.fieldCode = fieldCode;
-        this.staffId = staffId;
+        this.staffCode = staffCode;
     }
 }

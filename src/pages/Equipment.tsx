@@ -1,5 +1,8 @@
 import { useState } from "react";
 import {Button} from "../component/Button.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import equipment, {setEquipment} from "../slice/Equipment.ts";
 
 
 export const EquipmentForm = () => {
@@ -7,6 +10,23 @@ export const EquipmentForm = () => {
     const toggleForm = () => {
         setShowForm(!showForm);
     };
+
+    const dispatch = useDispatch();
+    const [equipmentCode, setEquipmentCode] = useState("");
+    const [equipmentName, setEquipmentName] = useState("");
+    const [equipmentType, setEquipmentType] = useState("");
+    const [status, setStatus] = useState("");
+    const [fieldCode, setFieldCode] = useState("");
+    const [staffCode,setStaffCode] = useState("");
+    const equipments = useSelector((state:RootState) => state.equipment.equipments)
+
+    //add equipment
+    function AddEquipment(e) {
+        e.preventDefault();
+        const newEquipment = {equipmentCode,equipmentName,equipmentType,status,fieldCode,staffCode}
+        dispatch(setEquipment(newEquipment))
+        alert("Successfully Added Equipment")
+    }
 
     return (
         <div className="main">
@@ -23,21 +43,21 @@ export const EquipmentForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code"/>
+                                       placeholder="Code" onChange={(e) => setEquipmentCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Name</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Common Name" />
+                                       placeholder="Common Name"  onChange={(e) => setEquipmentName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Type</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Scientific Name"/>
+                                       placeholder="Scientific Name"  onChange={(e) => setEquipmentType(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Status</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
+                                <select className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setStatus(e.target.value)}>
                                     <option>Select Category</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -46,7 +66,7 @@ export const EquipmentForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
+                                <select className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setFieldCode(e.target.value)}>
                                     <option>Select File</option>
                                     <option value="FED-001">FED-001</option>
                                     <option value="FED-002">FED-002</option>
@@ -55,16 +75,16 @@ export const EquipmentForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" >
+                                <select className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setStaffCode(e.target.value)}>
                                     <option>Select Staff</option>
-                                    <option value="FED-001">SFD-001</option>
-                                    <option value="FED-002">SFD-002</option>
-                                    <option value="FED-003">SFD-003</option>
+                                    <option value="SFD-001">SFD-001</option>
+                                    <option value="SFD-002">SFD-002</option>
+                                    <option value="SFD-003">SFD-003</option>
                                 </select>
                             </div>
                         </div>
                         <Button label="Save"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddEquipment}/>
                         <Button label="Update"
                                 className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
                     </form>
@@ -92,18 +112,21 @@ export const EquipmentForm = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2"></td>
-                        <td className="border border-gray-300 px-4 py-2">
-                            <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
-                            <Button label="Delete" className="text-red-500 hover:text-red-700"/>
-                        </td>
-                    </tr>
+                    {equipments.map((equipment) =>(
+                        <tr key={equipment.equipmentCode}>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.equipmentCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.equipmentName}</td>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.equipmentType}</td>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.status}</td>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.fieldCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{equipment.staffCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                <Button label="Update"
+                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete" className="text-red-500 hover:text-red-700"/>
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
