@@ -83,13 +83,13 @@ export const FieldForm = () => {
         dispatch(updateField(updatedFields));
         alert("Updated Field successfully!!");
         setShowForm(false);
-
     }
 
     //delete field
     function DeleteField(fieldCode:string){
         alert("Field Deleted Successfully!!");
         dispatch(deleteField(fieldCode));
+        setShowForm(false);
     }
     return (
         <div className="main">

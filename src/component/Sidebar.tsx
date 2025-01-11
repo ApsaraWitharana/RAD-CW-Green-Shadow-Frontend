@@ -12,6 +12,29 @@ import {
 } from "ionicons/icons";
 import {useEffect, useState} from "react";
 export const Sidebar = () => {
+
+    // const currentUserRole = "user";
+    //
+    // const permissions = {
+    //     manager: ["/dashboard", "/staff", "/field", "/crop", "/equipment", "/vehicle", "/monitoring", "/logout"],
+    //     administer: ["/dashboard", "/field", "/crop", "/logout"],
+    //     scientists: ["/dashboard", "/logout"],
+    // };
+    // const routes = [
+    //     { path: "/dashboard", label: "Dashboard", icon: homeOutline },
+    //     { path: "/staff", label: "Staff", icon: peopleOutline },
+    //     { path: "/field", label: "Field", icon: mapOutline },
+    //     { path: "/crop", label: "Crop", icon: leafOutline },
+    //     { path: "/equipment", label: "Equipment", icon: hammerOutline },
+    //     { path: "/vehicle", label: "Vehicle", icon: carOutline },
+    //     { path: "/monitoring", label: "Monitoring", icon: eyeOutline },
+    //     { path: "/logout", label: "Log Out", icon: logOutOutline },
+    // ];
+    //
+    // const accessibleRoutes = routes.filter(route =>
+    //     permissions[currentUserRole]?.includes(route.path)
+    // );
+
     const [currentTime, setCurrentTime] = useState(new Date());
     useEffect(() => {
         const timer = setInterval(() => {
@@ -36,6 +59,7 @@ export const Sidebar = () => {
     {/* Sidebar */
     }
     <aside className="sidebar">
+      {/*//  {accessibleRoutes.map(route => (*/}
         <ul className="sidebar-links">
             <li><Link className="sidebar-link" to="/dashboard">
                 <IonIcon className="icon" icon={homeOutline}/> Dashboard
@@ -75,6 +99,7 @@ export const Sidebar = () => {
                             </Link>
                         </li>
                     </ul>
+        {/*))}*/}
                 </aside>
         </div>
 );

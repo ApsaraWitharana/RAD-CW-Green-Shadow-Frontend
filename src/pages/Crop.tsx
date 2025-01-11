@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCrop } from "../slice/CropSlice.ts";
+import {deleteCrop, setCrop, updateCrop} from "../slice/CropSlice.ts";
 import {RootState} from "../store/Store.ts";
 import {Button} from "../component/Button.tsx";
+import {Crop} from "../model/Crop.ts";
 
 
 export const CropForm = () => {
@@ -11,18 +12,18 @@ export const CropForm = () => {
         setShowForm(!showForm);
     };
     // image preview
-    const [cropImage, setCropImage] = useState("");
+    const [cropImagePreview, setCropImagePreview] = useState("");
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = (event) => {
-                setCropImage(event.target.result);
+                setCropImagePreview(event.target.result);
             };
             reader.readAsDataURL(file);
-            cropImage(file);
+            setCropImage(file);
         } else {
-            setCropImage("");
+           setCropImagePreview("");
         }
     };
 
@@ -33,14 +34,56 @@ export const CropForm = () => {
     const [category, setCategory] = useState("");
     const [cropSeason, setCropSeason] = useState("");
     const [fileCode, setFileCode] = useState("");
+    const [cropImage, setCropImage] = useState("");
     const crops = useSelector((state:RootState) => state.crop.crops);
 
     //add crop
     function AddCrop(e) {
         e.preventDefault();
-        const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fileCode,};
+        const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fileCode};
         dispatch(setCrop(newCrop));
+        console.log(newCrop);
         alert("Crop was added Successfully!!.");
+        clear();
+        setShowForm(false);
+
+    }
+    //update crop
+    function handleRowClick(crop:Crop){
+        setCropCode(crop.cropCode);
+        setCropCommonName(crop.cropCommonName);
+        setCropScientificName(crop.cropScientificName);
+        setCropImage(crop.cropImage);
+        setCategory(crop.category);
+        setCropSeason(crop.cropSeason);
+        setFileCode(crop.fieldCode);
+        setShowForm(true);
+    }
+
+    function UpdateCrop(){
+        const updatedCrops = {cropCode, cropCommonName,cropScientificName,cropImage,category,cropSeason,fileCode};
+        dispatch(updateCrop(updatedCrops));
+        console.log(updatedCrops);
+        alert("Update crop successfully!");
+        clear();
+        setShowForm(false);
+    }
+
+    //delete crop
+    function DeleteCrop(cropCode:string){
+        alert("Crop was deleted Successfully!");
+        dispatch(deleteCrop(cropCode));
+        setShowForm(false);
+    }
+
+    function clear(){
+        setCropCode("");
+        setCropCommonName("");
+        setCropScientificName("");
+        setCategory("");
+        setCropImage("");
+        setCropSeason("");
+        setFileCode("");
     }
     return (
         <div className="main">
@@ -96,15 +139,16 @@ export const CropForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
                                 <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange}/>
-                                {cropImage && (
+                                {cropImagePreview && (
                                     <div className="mt-4">
-                                        <img src={cropImage} alt="Preview"
+                                        <img src={cropImagePreview} alt="Preview"
                                              className="h-32 w-32 object-cover rounded-md"/>
                                     </div>
                                 )}
                             </div>
                         </div>
                         <Button label="Save" onClick={AddCrop} className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateCrop} className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
@@ -121,10 +165,11 @@ export const CropForm = () => {
                     <thead>
                     <tr className="bg-gray-900">
                         <th className="border border-gray-300 px-4 py-2">Crop Code</th>
-                        <th className="border border-gray-300 px-4 py-2">Crop Common Name</th>
+                        <th className="border border-gray-300 px-4 py-2">Common Name</th>
                         <th className="border border-gray-300 px-4 py-2">Crop Section</th>
-                        <th className="border border-gray-300 px-4 py-2">Crop Image</th>
+                        <th className="border border-gray-300 px-4 py-2">Crop Category</th>
                         <th className="border border-gray-300 px-4 py-2">Field code</th>
+                        <th className="border border-gray-300 px-4 py-2">Crop Image</th>
                         <th className="border border-gray-300 px-4 py-2">Actions</th>
                     </tr>
                     </thead>
@@ -134,18 +179,14 @@ export const CropForm = () => {
                             <td className="border border-gray-300 px-4 py-2">{crop.cropCode}</td>
                             <td className="border border-gray-300 px-4 py-2">{crop.cropCommonName}</td>
                             <td className="border border-gray-300 px-4 py-2">{crop.cropSeason}</td>
-                            <td className="border border-gray-300 px-4 py-2">{crop.cropImage &&
-                                <img src={cropImage} alt="Field Image 1"
-                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.category}</td>
                             <td className="border border-gray-300 px-4 py-2">{crop.fieldCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.cropImage &&
+                                <img src={cropImagePreview} alt="Field Image 1"
+                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
-                                <button
-                                    className="text-red-500 hover:text-red-700"
-                                    title="Delete"
-                                >
-                                    Delete
-                                </button>
+                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(crop)}/>
+                                <Button label="Delete" onClick = {() => DeleteCrop(crop.cropCode)} className="text-red-500 hover:text-red-700"/>
                             </td>
                         </tr>
                     ))}

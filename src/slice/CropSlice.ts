@@ -14,8 +14,18 @@ const cropSlice = createSlice({
     reducers:{
         setCrop:(state,action:PayloadAction<Crop>)=>{
             state.crops.push(action.payload);
+        },
+        updateCrop:(state,action:PayloadAction<Crop>)=>{
+            const index = state.crops.findIndex(crop => crop.cropCode === action.payload.cropCode);
+            if(index !== -1){
+                state.crops[index] = action.payload;
+            }
+        },
+        deleteCrop:(state,action:PayloadAction<string>)=>{
+            state.crops = state.crops.filter(
+                (crop) =>crop.cropCode !== action.payload);
         }
     },
 });
-export const {setCrop} = cropSlice.actions;
+export const {setCrop,updateCrop,deleteCrop} = cropSlice.actions;
 export default cropSlice.reducer;

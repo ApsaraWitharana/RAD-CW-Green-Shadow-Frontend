@@ -70,7 +70,7 @@ export const Staffs = () => {
     function handleDeleteStaff(email:string) {
         alert("Staff member delete successfully!!")
         dispatch(deleteStaff(email))
-
+        setShowForm(false);
     }
     //clear data
     function clearData(){
