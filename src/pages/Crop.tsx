@@ -1,73 +1,110 @@
-import {useState} from "react";
-import {IonIcon} from "@ionic/react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCrop } from "../slice/CropSlice.ts";
+import {RootState} from "../store/Store.ts";
+import {Button} from "../component/Button.tsx";
 
-export const CropFrom = ()=>{
+
+export const CropForm = () => {
     const [showForm, setShowForm] = useState(false);
     const toggleForm = () => {
         setShowForm(!showForm);
     };
+    // image preview
+    const [cropImage, setCropImage] = useState("");
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setCropImage(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            cropImage(file);
+        } else {
+            setCropImage("");
+        }
+    };
 
+    const dispatch = useDispatch();
+    const [cropCode, setCropCode] = useState("");
+    const [cropCommonName, setCropCommonName] = useState("");
+    const [cropScientificName, setCropScientificName] = useState("");
+    const [category, setCategory] = useState("");
+    const [cropSeason, setCropSeason] = useState("");
+    const [fileCode, setFileCode] = useState("");
+    const crops = useSelector((state:RootState) => state.crop.crops);
+
+    //add crop
+    function AddCrop(e) {
+        e.preventDefault();
+        const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fileCode,};
+        dispatch(setCrop(newCrop));
+        alert("Crop was added Successfully!!.");
+    }
     return (
         <div className="main">
-            <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
+            <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Crop Management</h1>
-                <button className="px-4 py-2 bg-green-500 rounded-md hover:bg-green-600"
-                        onClick={toggleForm}>{showForm ? "Close Form" : "Add Crop"}</button>
+                <Button label={showForm ? "Close Form" : "Add Crop"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
             </nav>
             {/* Crop Form */}
             {showForm && (
                 <div className="bg-gray-900 p-4 rounded-md shadow-md mb-8 m-4">
                     <h2 className="text-2xl font-bold text-white mb-4">Crop Form</h2>
-                    <form className="space-y-4">
+                    <form className="space-y-4" onSubmit={AddCrop}>
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="code"/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Code" value={cropCode} onChange={(e) => setCropCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Common Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Common Name"/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Common Name" value={cropCommonName} onChange={(e) => setCropCommonName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Scientific Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder='Scientific Name'/>
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="Scientific Name" value={cropScientificName} onChange={(e) => setCropScientificName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Category</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={category} onChange={(e) => setCategory(e.target.value)}>
                                     <option>Select Category</option>
-                                    <option value={"A"}>A</option>
-                                    <option value={"B"}>B</option>
-                                    <option value={"C"}>C</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
                                 </select>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Section</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
-                                    <option>Select Category</option>
-                                    <option value={"Section A"}>Section A</option>
-                                    <option value={"Section B"}>Section B</option>
-                                    <option value={"Section C"}>Section C</option>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={cropSeason} onChange={(e) => setCropSeason(e.target.value)}>
+                                    <option>Select Section</option>
+                                    <option value="Section A">Section A</option>
+                                    <option value="Section B">Section B</option>
+                                    <option value="Section C">Section C</option>
                                 </select>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder='Field Code'/>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={fileCode} onChange={(e) => setFileCode(e.target.value)} >
+                                    <option>Select File</option>
+                                    <option value="FED-001">FED-001</option>
+                                    <option value="FED-002">FED-002</option>
+                                    <option value="FED-003">FED-003</option>
+                                </select>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange}/>
+                                {cropImage && (
+                                    <div className="mt-4">
+                                        <img src={cropImage} alt="Preview"
+                                             className="h-32 w-32 object-cover rounded-md"/>
+                                    </div>
+                                )}
                             </div>
-
                         </div>
-                        <button type="submit" className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600">Save
-                        </button>
-                        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Update
-                        </button>
+                        <Button label="Save" onClick={AddCrop} className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
                     </form>
                 </div>
             )}
@@ -75,9 +112,9 @@ export const CropFrom = ()=>{
             <div>
                 <h2 className="text-2xl font-bold mb-4">Crop List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md"
-                           placeholder="Search Crop"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Download PDF
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md" placeholder="Search Crop"/>
+                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                        Download PDF
                     </button>
                 </div>
                 <table className="table m-2">
@@ -91,29 +128,30 @@ export const CropFrom = ()=>{
                         <th className="border border-gray-300 px-4 py-2">Actions</th>
                     </tr>
                     </thead>
-                    <tbody id="fieldTableBody">
-                        <tr>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md"></td>
-                            <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">
-                                <img  alt="Field Image 1"
-                                     className="h-16 w-16 object-cover rounded-md"/></td>
+                    <tbody>
+                    {crops.map((crop) => (
+                        <tr key={crop.cropCode}>
+                            <td className="border border-gray-300 px-4 py-2">{crop.cropCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.cropCommonName}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.cropSeason}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.cropImage &&
+                                <img src={cropImage} alt="Field Image 1"
+                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
+                            <td className="border border-gray-300 px-4 py-2">{crop.fieldCode}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update" >
-                                    <IonIcon className="icon"/> Update
-                                </button>
-                                <button className="text-red-500 hover:text-red-700" title="Delete">
-                                    <IonIcon className="icon"/> Delete
+                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <button
+                                    className="text-red-500 hover:text-red-700"
+                                    title="Delete"
+                                >
+                                    Delete
                                 </button>
                             </td>
                         </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
         </div>
     );
 };
-
-
