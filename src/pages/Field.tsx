@@ -1,10 +1,10 @@
 import "../style/FieldForm.css";
-import {IonIcon} from "@ionic/react";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {deleteField, setField, updateField} from "../slice/FieldSlice.ts";
 import {Field} from "../model/Field.ts";
+import { Button } from "../component/Button";
 
 export const FieldForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -43,7 +43,6 @@ export const FieldForm = () => {
         }
     };
 
-
     const dispatch = useDispatch();
     const [fieldCode, setFieldCode] = useState("");
     const [fieldName, setFieldName] = useState("");
@@ -54,7 +53,7 @@ export const FieldForm = () => {
     const field= useSelector((state:RootState) =>state.field.fields);
 
     //add field
-    function addField(e){
+    function AddField(e){
         e.preventDefault();
         const newField ={
             fieldCode:fieldCode,fieldName:fieldName,
@@ -64,7 +63,6 @@ export const FieldForm = () => {
         dispatch(setField(newField));
         alert("Field member added successfully!!");
     }
-
     //update field
     function handleRowClick(field:Field){
         setFieldCode(field.fieldCode);
@@ -98,8 +96,7 @@ export const FieldForm = () => {
             {/* Navigation bar with "Add Field " button */}
             <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Field Management</h1>
-                <button className="px-4 py-2 bg-green-500 rounded-md hover:bg-green-600"
-                        onClick={toggleForm}>{showForm ? "Close Form" : "Add Field"}</button>
+                <Button label={showForm ? "Close Form" : "Add Field"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
             </nav>
             {/* Field Form */}
             {showForm && (
@@ -153,24 +150,17 @@ export const FieldForm = () => {
                             </div>
 
                         </div>
-                        <button type="submit"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-                                onClick={addField}>Save
-                        </button>
-                        <button type="submit"
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                                onClick={UpdateField}>Update
-                        </button>
+                        <Button label="Save" onClick={AddField}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateField} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
-
-            {/* Staff Table */}
+            {/* Filed Table */}
             <div>
                 <h2 className="text-2xl font-bold mb-4">Field List</h2>
                 <div className="mb-4 flex justify-between items-center">
                     <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md"
-                           placeholder="Search Staff"/>
+                           placeholder="Search Filed"/>
                     <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Download PDF
                     </button>
                 </div>
@@ -200,12 +190,8 @@ export const FieldForm = () => {
                                 <img src={fieldImagePreview2} alt="Field Image 2"
                                      className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                            <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update" onClick={()=> handleRowClick(field)}>
-                                    <IonIcon className="icon"/> Update
-                                </button>
-                                <button className="text-red-500 hover:text-red-700" title="Delete" onClick={() => DeleteField(field.fieldCode)}>
-                                    <IonIcon className="icon"/> Delete
-                                </button>
+                                <Button label="Update" onClick={() => handleRowClick(field)} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete" onClick={() => DeleteField(field.fieldCode)} className="px-4 py-2 m-4 bg-red-500 text-white hover:bg-red-600"/>
                             </td>
                         </tr>
                         ))}

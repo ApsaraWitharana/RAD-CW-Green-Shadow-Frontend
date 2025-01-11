@@ -3,8 +3,8 @@ import "../style/Staff.css"
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {deleteStaff, setStaff, updateStaff} from "../slice/StaffSlice.ts";
-import {IonIcon} from "@ionic/react";
 import {Staff} from "../model/Staff.ts";
+import {Button} from "../component/Button.tsx";
 
 export const Staffs = () => {
     const [showForm, setShowForm] = useState(false);
@@ -96,8 +96,7 @@ export const Staffs = () => {
             {/* Navigation bar with "Add Staff " button */}
             <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Staff Management</h1>
-                <button className="px-4 py-2 bg-green-500 rounded-md hover:bg-green-600"
-                        onClick={toggleForm}>{showForm ? "Close Form" : "Add Staff"}</button>
+                <Button label={showForm ? "Close Form" : "Add Staff"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
             </nav>
             {/* Staff Form */}
             {showForm && (
@@ -190,14 +189,8 @@ export const Staffs = () => {
                                 </select>
                             </div>
                         </div>
-                        <button type="submit"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-                                onClick={addStaff}>Save
-                        </button>
-                        <button type="submit"
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                                onClick={UpdateStaff}>Update
-                        </button>
+                        <Button label="Save" onClick={addStaff}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateStaff} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
@@ -233,13 +226,8 @@ export const Staffs = () => {
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.email}</td>
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.role}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <button className="text-blue-500 hover:text-blue-700 mr-2 " title="Update"
-                                        onClick={() => handleRowClick(staff)}>
-                                    <IonIcon className="icon"/> Update
-                                </button>
-                                <button className="text-red-500 hover:text-red-700" title="Delete" onClick={()=>handleDeleteStaff(staff.email)}>
-                                    <IonIcon className="icon"/> Delete
-                                </button>
+                                <Button label="Update" onClick={() => handleRowClick(staff)} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete" onClick={() => handleDeleteStaff(staff.email)} className="px-4 py-2 m-4 bg-red-500 text-white hover:bg-red-600"/>
                             </td>
                         </tr>
                     ))}

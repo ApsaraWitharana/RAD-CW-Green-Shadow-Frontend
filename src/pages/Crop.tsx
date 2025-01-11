@@ -9,13 +9,12 @@ export const CropFrom = ()=>{
 
     return (
         <div className="main">
-            {/* Navigation bar with "Add Field " button */}
             <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Crop Management</h1>
                 <button className="px-4 py-2 bg-green-500 rounded-md hover:bg-green-600"
-                        onClick={toggleForm}>{showForm ? "Close Form" : "Add Field"}</button>
+                        onClick={toggleForm}>{showForm ? "Close Form" : "Add Crop"}</button>
             </nav>
-            {/* Field Form */}
+            {/* Crop Form */}
             {showForm && (
                 <div className="bg-gray-900 p-4 rounded-md shadow-md mb-8 m-4">
                     <h2 className="text-2xl font-bold text-white mb-4">Crop Form</h2>
@@ -65,24 +64,19 @@ export const CropFrom = ()=>{
                             </div>
 
                         </div>
-                        <button type="submit"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"
-                        >Save
+                        <button type="submit" className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600">Save
                         </button>
-                        <button type="submit"
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                        >Update
+                        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Update
                         </button>
                     </form>
                 </div>
             )}
-
-            {/* Staff Table */}
+            {/* Crop Table */}
             <div>
                 <h2 className="text-2xl font-bold mb-4">Crop List</h2>
                 <div className="mb-4 flex justify-between items-center">
                     <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md"
-                           placeholder="Search Staff"/>
+                           placeholder="Search Crop"/>
                     <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Download PDF
                     </button>
                 </div>
@@ -115,7 +109,6 @@ export const CropFrom = ()=>{
                                 </button>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
