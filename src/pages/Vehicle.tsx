@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setVehicle,updateVehicle} from "../slice/Vehicle.ts";
+import {deleteVehicle, setVehicle, updateVehicle} from "../slice/Vehicle.ts";
 import {Vehicle} from "../model/Vehicle.ts";
 
 export const VehicleForm = () => {
@@ -46,6 +46,13 @@ export const VehicleForm = () => {
         const updateVehicles = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks}
         dispatch(updateVehicle(updateVehicles));
         alert("Vehicle Updated Successfully!");
+        setShowForm(false);
+    }
+
+    //delete vehicle
+    function DeleteVehicle(vehicleCode: string) {
+        alert("Vehicle Deleted Successfully!");
+        dispatch(deleteVehicle(vehicleCode));
         setShowForm(false);
     }
     return (
@@ -146,7 +153,7 @@ export const VehicleForm = () => {
                             <td className="border border-gray-300 px-4 py-2">{vehicle.remarks}</td>
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(vehicle)}/>
-                                <Button label="Delete" className="text-red-500 hover:text-red-700"/>
+                                <Button label="Delete" className="px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700" onClick ={()=>DeleteVehicle(vehicle.vehicleCode)}/>
                             </td>
                         </tr>
                     ))}

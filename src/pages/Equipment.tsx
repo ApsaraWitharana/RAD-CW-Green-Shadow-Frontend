@@ -147,7 +147,7 @@ export const EquipmentForm = () => {
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update"
                                         className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick = {() => handleRowClick(equipment)}/>
-                                <Button label="Delete" className="text-red-500 hover:text-red-700" onClick ={()=> DeleteEquipment(equipment.equipmentCode)}/>
+                                <Button label="Delete" className="px-4 py-2 m-4 bg-red-500 text-white  hover:text-red-700" onClick ={()=> DeleteEquipment(equipment.equipmentCode)}/>
                             </td>
                         </tr>
                     ))}

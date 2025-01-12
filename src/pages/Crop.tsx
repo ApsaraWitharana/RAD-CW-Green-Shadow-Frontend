@@ -197,7 +197,7 @@ export const CropForm = () => {
                                      className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(crop)}/>
-                                <Button label="Delete" onClick = {() => DeleteCrop(crop.cropCode)} className="text-red-500 hover:text-red-700"/>
+                                <Button label="Delete" onClick = {() => DeleteCrop(crop.cropCode)} className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700"/>
                             </td>
                         </tr>
                     ))}
