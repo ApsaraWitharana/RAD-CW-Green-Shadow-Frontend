@@ -27,6 +27,7 @@ export const VehicleForm = () => {
         const newVehicle = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks};
         dispatch(setVehicle(newVehicle));
         alert("Vehicle Added Successfully!");
+        clearData();
         setShowForm(false);
     }
 
@@ -46,6 +47,7 @@ export const VehicleForm = () => {
         const updateVehicles = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks}
         dispatch(updateVehicle(updateVehicles));
         alert("Vehicle Updated Successfully!");
+        clearData();
         setShowForm(false);
     }
 
@@ -54,6 +56,17 @@ export const VehicleForm = () => {
         alert("Vehicle Deleted Successfully!");
         dispatch(deleteVehicle(vehicleCode));
         setShowForm(false);
+    }
+
+    function clearData(){
+        setVehicleCode("");
+        setLicensePlateNumber(0);
+        setVehicleCategory("");
+        setFuelType("");
+        setStatus("");
+        setStaffId("");
+        setRemarks("");
+        setShowForm(true);
     }
     return (
         <div className="main">
