@@ -15,8 +15,14 @@ const equipmentSlice = createSlice({
     reducers:{
         setEquipment:(state,action:PayloadAction<Equipment>)=>{
             state.equipments.push(action.payload);
+        },
+        updateEquipment:(state,action:PayloadAction<Equipment>)=>{
+            const index = state.equipments.findIndex((equipment)=> equipment.equipmentCode === action.payload.equipmentCode);
+            if (index !== -1){
+                state.equipments[index] = action.payload;
+            }
         }
     }
 });
-export const {setEquipment} = equipmentSlice.actions;
+export const {setEquipment,updateEquipment} = equipmentSlice.actions;
 export default equipmentSlice.reducer;
