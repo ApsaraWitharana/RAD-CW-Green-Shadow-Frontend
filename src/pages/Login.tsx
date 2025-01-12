@@ -24,12 +24,12 @@ const Login = () => {
                         </div>
                         <span className="text-sm text-emerald-400 cursor-pointer hover:underline">Forgot Password?</span>
                     </div>
-                    <button className="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-2 transition-colors duration-300" type="submit">Login
+                    <button  className="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-2 transition-colors duration-300" type="submit">Login
                     </button>
                     <div className="text-center">
             <span className="text-sm text-gray-300">
               New Here?{" "}
-                <Link to="Register" className="text-emerald-400 hover:underline">
+                <Link to="/Register" className="text-emerald-400 hover:underline">
                 Create an Account
               </Link>
             </span>

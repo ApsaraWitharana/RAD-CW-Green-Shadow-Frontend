@@ -9,10 +9,12 @@ import {CropForm} from "./pages/Crop.tsx";
 import {EquipmentForm} from "./pages/Equipment.tsx";
 import {VehicleForm} from "./pages/Vehicle.tsx";
 import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
 
 function App() {
   const routes = createBrowserRouter([
     { path: "/login", element: <Login /> },
+    { path: "/Register", element: <Register /> },
     {
       path: "/",
       element: <RootLayout />,

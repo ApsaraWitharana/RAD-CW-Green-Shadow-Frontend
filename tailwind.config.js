@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'login-bg': "url('/src/assets/backgroundImage.jpg')",
+        'login-bg': "url('/src/assets/img.png')",
+        'register-bg': "url('/src/assets/img_2.png')",
       },
     },
   },
