@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setEquipment, updateEquipment} from "../slice/Equipment.ts";
+import {deleteEquipment, setEquipment, updateEquipment} from "../slice/Equipment.ts";
 import {Equipment} from "../model/Equipment.ts";
 
 
@@ -43,6 +43,13 @@ export const EquipmentForm = () => {
         const updateEquipments = {equipmentCode,equipmentName,equipmentType,status,fieldCode,staffCode};
         dispatch(updateEquipment(updateEquipments));
         alert("Successfully Update Equipment");
+        setShowForm(false);
+    }
+
+    //delete equipment
+    function DeleteEquipment(equipmentCode: string) {
+        alert("Deleting Equipment");
+        dispatch(deleteEquipment(equipmentCode));
         setShowForm(false);
     }
     return (
@@ -140,7 +147,7 @@ export const EquipmentForm = () => {
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update"
                                         className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick = {() => handleRowClick(equipment)}/>
-                                <Button label="Delete" className="text-red-500 hover:text-red-700"/>
+                                <Button label="Delete" className="text-red-500 hover:text-red-700" onClick ={()=> DeleteEquipment(equipment.equipmentCode)}/>
                             </td>
                         </tr>
                     ))}
