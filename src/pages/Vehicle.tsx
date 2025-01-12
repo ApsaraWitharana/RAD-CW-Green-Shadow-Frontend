@@ -2,7 +2,8 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setVehicle} from "../slice/Vehicle.ts";
+import {setVehicle,updateVehicle} from "../slice/Vehicle.ts";
+import {Vehicle} from "../model/Vehicle.ts";
 
 export const VehicleForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -30,7 +31,23 @@ export const VehicleForm = () => {
     }
 
     //update
+    function handleRowClick(vehicle: Vehicle) {
+        setVehicleCode(vehicle.vehicleCode);
+        setLicensePlateNumber(vehicle.licensePlateNumber);
+        setVehicleCategory(vehicle.vehicleCategory);
+        setFuelType(vehicle.fuelType);
+        setStatus(vehicle.status);
+        setStaffId(vehicle.staffId);
+        setRemarks(vehicle.remarks);
+        setShowForm(true);
+    }
 
+    function UpdateVehicle() {
+        const updateVehicles = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks}
+        dispatch(updateVehicle(updateVehicles));
+        alert("Vehicle Updated Successfully!");
+        setShowForm(false);
+    }
     return (
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
@@ -46,21 +63,21 @@ export const VehicleForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Vehicle Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code" onChange={(e) => setVehicleCode(e.target.value)}/>
+                                       placeholder="Code" value={vehicleCode} onChange={(e) => setVehicleCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">License Plate Number</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Plate Number" onChange={(e) => setLicensePlateNumber(e.target.value)}/>
+                                       placeholder="Plate Number" value={licensePlateNumber} onChange={(e) => setLicensePlateNumber(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Vehicle Category</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Vehicle Category" onChange={(e) => setVehicleCategory(e.target.value)}/>
+                                       placeholder="Vehicle Category" value={vehicleCategory} onChange={(e) => setVehicleCategory(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Fuel Type</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" onChange={(e) => setFuelType(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
                                     <option>Select Type</option>
                                     <option value="Petrol">Petrol</option>
                                     <option value="Descale">Descale</option>
@@ -69,7 +86,7 @@ export const VehicleForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Status</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" onChange={(e) => setStatus(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={status} onChange={(e) => setStatus(e.target.value)}>
                                     <option>Select Status</option>
                                     <option value="Available">Available</option>
                                     <option value="Out of Service">Out of Service</option>
@@ -77,7 +94,7 @@ export const VehicleForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" onChange={(e) => setStaffId(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={staffId} onChange={(e) => setStaffId(e.target.value)}>
                                     <option>Select Staff</option>
                                     <option value="SFD-001">SFD-001</option>
                                     <option value="SFD-002">SFD-002</option>
@@ -87,13 +104,13 @@ export const VehicleForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Remark</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Enter Remark " onChange={(e) => setRemarks(e.target.value)}/>
+                                       placeholder="Enter Remark" value={remarks} onChange={(e) => setRemarks(e.target.value)}/>
                             </div>
                         </div>
                         <Button label="Save"
                                 className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddVehicle}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick={UpdateVehicle}/>
                     </form>
                 </div>
             )}
@@ -128,8 +145,7 @@ export const VehicleForm = () => {
                             <td className="border border-gray-300 px-4 py-2">{vehicle.staffId}</td>
                             <td className="border border-gray-300 px-4 py-2">{vehicle.remarks}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update"
-                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(vehicle)}/>
                                 <Button label="Delete" className="text-red-500 hover:text-red-700"/>
                             </td>
                         </tr>
