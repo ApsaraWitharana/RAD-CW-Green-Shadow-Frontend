@@ -8,9 +8,11 @@ import  {FieldForm} from "./pages/Field.tsx";
 import {CropForm} from "./pages/Crop.tsx";
 import {EquipmentForm} from "./pages/Equipment.tsx";
 import {VehicleForm} from "./pages/Vehicle.tsx";
+import Login from "./pages/Login.tsx";
 
 function App() {
   const routes = createBrowserRouter([
+    { path: "/login", element: <Login /> },
     {
       path: "/",
       element: <RootLayout />,
@@ -32,7 +34,6 @@ function App() {
   ]);
 
   return (
-
       <SidebarProvider>
         <RouterProvider router={routes} />
       </SidebarProvider>
