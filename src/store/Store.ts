@@ -5,6 +5,7 @@ import cropSlice from "../slice/CropSlice.ts";
 import equipmentSlice from "../slice/Equipment.ts";
 import vehicleSlice from "../slice/Vehicle.ts";
 import userSlice from "../slice/UserSlice.ts";
+import monitoring from "../slice/Monitoring.ts";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     field:fieldSlice,
     crop:cropSlice,
     equipment:equipmentSlice,
-    vehicle:vehicleSlice
+    vehicle:vehicleSlice,
+    monitoring:monitoring
 
 });
 

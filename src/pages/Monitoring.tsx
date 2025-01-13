@@ -1,5 +1,8 @@
 import { useState } from "react";
 import {Button} from "../component/Button.tsx";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import {setMonitoring} from "../slice/Monitoring.ts";
 
 export const MonitoringForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -7,7 +10,38 @@ export const MonitoringForm = () => {
         setShowForm(!showForm);
     };
 
+    // image preview
+    const [monitoringImagePreview, setMonitoringImagePreview] = useState("");
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setMonitoringImagePreview(event.target.result);
+            };
+            reader.readAsDataURL(file);
+            setObservedImage(file);
+        } else {
+            setMonitoringImagePreview("");
+        }
+    };
 
+    const dispatch = useDispatch();
+    const [logCode, setLogCode] = useState("");
+    const [logDate, setLogDate] = useState("");
+    const [logDetails, setLogDetail] = useState("");
+    const [cropCode, setCropCode] = useState("");
+    const [observedImage, setObservedImage] = useState("");
+    const monitorings = useSelector((state:RootState) => state.monitoring.monitorings);
+
+    //add monitoring
+    function AddMonitoring(e) {
+        e.preventDefault();
+        const newMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
+        dispatch(setMonitoring(newMonitoring));
+        alert("Log was added Successfully!");
+        setShowForm(false);
+    }
     return (
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
@@ -18,25 +52,25 @@ export const MonitoringForm = () => {
             {showForm && (
                 <div className="bg-gray-900 p-4 rounded-md shadow-md mb-8 m-4">
                     <h2 className="text-2xl font-bold text-white mb-4">Monitoring Form</h2>
-                    <form className="space-y-4" >
+                    <form className="space-y-4" onSubmit={AddMonitoring}>
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code"/>
+                                       placeholder="Code"  onChange={(e) => setLogCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Date</label>
-                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md"/>
+                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setLogDate(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Details</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Scientific Name"/>
+                                       placeholder="Log Details"  onChange={(e) => setLogDetail(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md">
+                                <select className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setCropCode(e.target.value)}>
                                     <option>Select Code</option>
                                     <option value="CRP-001">CRP-001</option>
                                     <option value="CRP-002">CRP-002</option>
@@ -45,15 +79,17 @@ export const MonitoringForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50"> Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"  onChange={handleImageChange}/>
+                                {monitoringImagePreview && (
                                     <div className="mt-4">
-                                        <img  alt="Preview"
+                                        <img src={monitoringImagePreview} alt="Preview"
                                              className="h-32 w-32 object-cover rounded-md"/>
                                     </div>
+                                )}
                             </div>
                         </div>
                         <Button label="Save"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddMonitoring}/>
                         <Button label="Update"
                                 className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
                     </form>
@@ -80,19 +116,23 @@ export const MonitoringForm = () => {
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="border border-gray-300 px-4 py-2"></td>
-                            <td className="border border-gray-300 px-4 py-2"></td>
-                            <td className="border border-gray-300 px-4 py-2"></td>
-                            <td className="border border-gray-300 px-4 py-2"></td>
+                    {monitorings.map((monitoring) => (
+                        <tr key={monitoring.logCode}>
+                            <td className="border border-gray-300 px-4 py-2">{monitoring.logCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{monitoring.logDate}</td>
+                            <td className="border border-gray-300 px-4 py-2">{monitoring.logDetails}</td>
+                            <td className="border border-gray-300 px-4 py-2">{monitoring.cropCode}</td>
+                            <td className="border border-gray-300 px-4 py-2">{monitoring.observedImage &&
+                                <img src={monitoringImagePreview} alt=" Image "
+                                     className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <img  alt="Field Image 1"
-                                     className="h-16 w-16 object-cover rounded-md"/></td>
-                            <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
-                                <Button label="Delete" className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700"/>
+                                <Button label="Update"
+                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete"
+                                        className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700"/>
                             </td>
                         </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
