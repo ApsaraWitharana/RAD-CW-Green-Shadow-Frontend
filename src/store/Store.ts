@@ -4,9 +4,11 @@ import fieldSlice from "../slice/FieldSlice.ts";
 import cropSlice from "../slice/CropSlice.ts";
 import equipmentSlice from "../slice/Equipment.ts";
 import vehicleSlice from "../slice/Vehicle.ts";
+import userSlice from "../slice/UserSlice.ts";
 
 
 const rootReducer = combineReducers({
+    user:userSlice,
     staff: staffSlice,
     field:fieldSlice,
     crop:cropSlice,

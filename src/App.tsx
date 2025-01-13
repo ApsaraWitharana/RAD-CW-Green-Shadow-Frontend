@@ -1,5 +1,5 @@
-import {createBrowserRouter, RouterProvider} from "react-router";
-import {SidebarProvider} from "./component/SidebarContext.tsx";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router";
+import {SidebarProvider} from "./component/context/SidebarContext.tsx";
 import {RootLayout} from "./component/RootLayout.tsx";
 import {Staffs} from "./pages/Staff.tsx";
 import {Error} from "./pages/Error.tsx";
@@ -10,9 +10,11 @@ import {EquipmentForm} from "./pages/Equipment.tsx";
 import {VehicleForm} from "./pages/Vehicle.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
+import {AuthProvider} from "./component/context/AuthContext.tsx";
 
 function App() {
   const routes = createBrowserRouter([
+    { path: "/", element: <Navigate to="/login" replace /> },
     { path: "/login", element: <Login /> },
     { path: "/Register", element: <Register /> },
     {
@@ -36,9 +38,12 @@ function App() {
   ]);
 
   return (
-      <SidebarProvider>
-        <RouterProvider router={routes} />
-      </SidebarProvider>
+      <AuthProvider>
+        <SidebarProvider>
+          <RouterProvider router={routes} />
+        </SidebarProvider>
+      </AuthProvider>
+
   );
 }
 export default App;
