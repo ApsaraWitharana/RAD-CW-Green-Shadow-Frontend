@@ -9,23 +9,29 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // Define permissions for each role
+    const permissions = {
+        manager: ["/dashboard", "/staff", "/field", "/crop", "/equipment", "/vehicle", "/monitoring", "/logout"],
+        administrator: ["/dashboard", "/field", "/crop", "/equipment", "/logout"],
+        scientist: ["/dashboard", "/staff","/equipment", "/vehicle", "/logout"],
+    };
+
     const loginHandler = (e: React.FormEvent) => {
         e.preventDefault();
 
         // Check if user exists
-        const userExists = users.some(
+        const userExists = users.find(
             (user) => user.email === email && user.password === password
         );
 
-        // const permissions = {
-        //         manager: ["/dashboard", "/staff", "/field", "/crop", "/equipment", "/vehicle", "/monitoring", "/logout"],
-        //         administer: ["/dashboard", "/field", "/crop", "/equipment","/logout"],
-        //         scientists: ["/dashboard", "/logout"],
-        //     };
-
         if (userExists) {
-            alert("User logged in successfully!");
-            navigate("/dashboard");
+            const userRole = userExists.role.toLowerCase();
+            if (permissions[userRole]) {
+                alert("User logged in successfully!");
+                navigate("/dashboard", { state: { role: userRole, permissions: permissions[userRole] } });
+            } else {
+                alert("Role is not recognized!");
+            }
 
         } else {
             alert("Invalid email or password!");

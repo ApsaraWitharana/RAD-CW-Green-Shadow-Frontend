@@ -11,6 +11,7 @@ import {VehicleForm} from "./pages/Vehicle.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import {AuthProvider} from "./component/context/AuthContext.tsx";
+import {MonitoringForm} from "./pages/Monitoring.tsx";
 
 function App() {
   const routes = createBrowserRouter([
@@ -27,7 +28,7 @@ function App() {
         { path: "/crop", element: <CropForm/> },
         { path: "/equipment", element: <EquipmentForm/> },
         { path: "/vehicle", element: <VehicleForm/> },
-
+        { path:"/monitoring",element:<MonitoringForm/>}
       ],
       errorElement: <Error />,
     },

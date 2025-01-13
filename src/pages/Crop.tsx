@@ -5,7 +5,6 @@ import {RootState} from "../store/Store.ts";
 import {Button} from "../component/Button.tsx";
 import {Crop} from "../model/Crop.ts";
 
-
 export const CropForm = () => {
     const [showForm, setShowForm] = useState(false);
     const toggleForm = () => {
