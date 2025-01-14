@@ -4,6 +4,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {deleteVehicle, setVehicle, updateVehicle} from "../slice/Vehicle.ts";
 import {Vehicle} from "../model/Vehicle.ts";
+import {searchOutline} from "ionicons/icons";
+import {IonIcon} from "@ionic/react";
+
+
 
 export const VehicleForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -127,7 +131,7 @@ export const VehicleForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={staffId} onChange={(e) => setStaffId(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={staffId} onChange={(e) => setStaffId(e.target.value)}>
                                     <option>Select Staff</option>
                                     <option value="SFD-001">SFD-001</option>
                                     <option value="SFD-002">SFD-002</option>
@@ -151,7 +155,11 @@ export const VehicleForm = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Equipment List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full" placeholder="Search Crop"/>
+                    <input type="text" className="w-1/3 p-2  border border-gray-300 rounded-full"
+                           placeholder="Search Vehicle"/>
+                    {/*<div className="iconBx">*/}
+                    {/*    <IonIcon icon={searchOutline}/>*/}
+                    {/*</div>*/}
                     <button className="px-4 py-2 bg-green-900 text-white rounded-full hover:bg-green-600">
                         Download PDF
                     </button>
