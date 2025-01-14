@@ -82,7 +82,7 @@ export const EquipmentForm = () => {
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Equipment Management</h1>
-                <Button label={showForm ? "Close Form" : "Add Equipment"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
+                <Button label={showForm ? "Close Form" : "Add Equipment"} onClick={toggleForm} className="bg-green-500 rounded-full text-white hover:bg-green-600"/>
             </nav>
             {/* Equipment Form */}
             {showForm && (
@@ -92,22 +92,22 @@ export const EquipmentForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        readOnly value={equipmentCode} onChange={(e) => setEquipmentCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Common Name" value={equipmentName}  onChange={(e) => setEquipmentName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Type</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Scientific Name" value={equipmentType}  onChange={(e) => setEquipmentType(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Status</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={status}  onChange={(e) => setStatus(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={status}  onChange={(e) => setStatus(e.target.value)}>
                                     <option>Select Category</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
@@ -116,7 +116,7 @@ export const EquipmentForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}>
                                     <option>Select File</option>
                                     <option value="FED-001">FED-001</option>
                                     <option value="FED-002">FED-002</option>
@@ -125,7 +125,7 @@ export const EquipmentForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={staffCode}  onChange={(e) => setStaffCode(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={staffCode}  onChange={(e) => setStaffCode(e.target.value)}>
                                     <option>Select Staff</option>
                                     <option value="SFD-001">SFD-001</option>
                                     <option value="SFD-002">SFD-002</option>
@@ -134,9 +134,9 @@ export const EquipmentForm = () => {
                             </div>
                         </div>
                         <Button label="Save"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddEquipment}/>
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600" onClick={AddEquipment}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick ={UpdateEquipment}/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick ={UpdateEquipment}/>
                     </form>
                 </div>
             )}
@@ -144,8 +144,8 @@ export const EquipmentForm = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Equipment List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md" placeholder="Search Crop"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full" placeholder="Search Crop"/>
+                    <button className="px-4 py-2 bg-green-900 text-white rounded-full hover:bg-green-600">
                         Download PDF
                     </button>
                 </div>

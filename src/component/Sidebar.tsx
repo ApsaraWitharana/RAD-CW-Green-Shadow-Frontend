@@ -76,40 +76,40 @@ export const Sidebar = () => {
                     {/*        );*/}
                     {/*    }*/}
                     {/*})}*/}
-                    <li><Link className="sidebar-link" to="/dashboard">
+                    <li><Link className="sidebar-link px-4 py-3 rounded-full" to="/dashboard">
                         <IonIcon className="icon" icon={homeOutline}/> Dashboard
                     </Link>
                     </li>
-                    <li><Link className="sidebar-link" to="/staff">
+                    <li><Link className="sidebar-link px-4 py-3 rounded-full" to="/staff">
                         <IonIcon className="icon" icon={peopleOutline}/> Staff
                     </Link>
                     </li>
-                    <li><Link className="sidebar-link" to="/field">
+                    <li><Link className="sidebar-link px-4 py-3 rounded-full" to="/field">
                         <IonIcon className="icon" icon={mapOutline}/> Field
                     </Link>
                     </li>
                     <li>
-                        <Link className="sidebar-link" to="/crop">
+                        <Link className="sidebar-link px-4 py-3 rounded-full" to="/crop">
                             <IonIcon className="icon" icon={leafOutline}/> Crop
                         </Link>
                     </li>
                     <li>
-                        <Link className="sidebar-link" to="/equipment">
+                        <Link className="sidebar-link px-4 py-3 rounded-full" to="/equipment">
                             <IonIcon className="icon" icon={hammerOutline}/> Equipment
                         </Link>
                     </li>
                     <li>
-                        <Link className="sidebar-link" to="/vehicle">
+                        <Link className="sidebar-link px-4 py-3 rounded-full" to="/vehicle">
                             <IonIcon className="icon" icon={carOutline}/> Vehicle
                         </Link>
                     </li>
                     <li>
-                        <Link className="sidebar-link" to="/monitoring">
+                        <Link className="sidebar-link px-4 py-3 rounded-full" to="/monitoring">
                             <IonIcon className="icon" icon={eyeOutline}/> Monitoring
                         </Link>
                     </li>
                     <li>
-                        <Link className="sidebar-link" to="/logout">
+                        <Link className="sidebar-link px-4 py-3 rounded-full" to="/login">
                             <IonIcon className="icon" icon={logOutOutline}/> Log Out
                         </Link>
                     </li>

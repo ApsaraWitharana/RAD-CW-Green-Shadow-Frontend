@@ -85,7 +85,7 @@ export const VehicleForm = () => {
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Vehicle Management</h1>
-                <Button label={showForm ? "Close Form" : "Add Vehicle"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
+                <Button label={showForm ? "Close Form" : "Add Vehicle"} onClick={toggleForm} className="bg-green-500 rounded-full text-white hover:bg-green-600"/>
             </nav>
             {/* Vehicle Form */}
             {showForm && (
@@ -95,22 +95,22 @@ export const VehicleForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Vehicle Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        readOnly value={vehicleCode} onChange={(e) => setVehicleCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">License Plate Number</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Plate Number" value={licensePlateNumber} onChange={(e) => setLicensePlateNumber(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Vehicle Category</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Vehicle Category" value={vehicleCategory} onChange={(e) => setVehicleCategory(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Fuel Type</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
                                     <option>Select Type</option>
                                     <option value="Petrol">Petrol</option>
                                     <option value="Descale">Descale</option>
@@ -119,7 +119,7 @@ export const VehicleForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Status</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={status} onChange={(e) => setStatus(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={status} onChange={(e) => setStatus(e.target.value)}>
                                     <option>Select Status</option>
                                     <option value="Available">Available</option>
                                     <option value="Out of Service">Out of Service</option>
@@ -136,14 +136,14 @@ export const VehicleForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Remark</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Enter Remark" value={remarks} onChange={(e) => setRemarks(e.target.value)}/>
                             </div>
                         </div>
                         <Button label="Save"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddVehicle}/>
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600" onClick={AddVehicle}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick={UpdateVehicle}/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={UpdateVehicle}/>
                     </form>
                 </div>
             )}
@@ -151,8 +151,8 @@ export const VehicleForm = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Equipment List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md" placeholder="Search Crop"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full" placeholder="Search Crop"/>
+                    <button className="px-4 py-2 bg-green-900 text-white rounded-full hover:bg-green-600">
                         Download PDF
                     </button>
                 </div>
@@ -178,8 +178,8 @@ export const VehicleForm = () => {
                             <td className="border border-gray-300 px-4 py-2">{vehicle.staffId}</td>
                             <td className="border border-gray-300 px-4 py-2">{vehicle.remarks}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update" className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(vehicle)}/>
-                                <Button label="Delete" className="px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700" onClick ={()=>DeleteVehicle(vehicle.vehicleCode)}/>
+                                <Button label="Update" className="px-4 py-2 m-4 rounded-full bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(vehicle)}/>
+                                <Button label="Delete" className="px-4 py-2 m-4 rounded-full bg-red-500 text-white hover:text-red-700" onClick ={()=>DeleteVehicle(vehicle.vehicleCode)}/>
                             </td>
                         </tr>
                     ))}

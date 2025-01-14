@@ -121,7 +121,7 @@ export const FieldForm = () => {
             {/* Navigation bar with "Add Field " button */}
             <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Field Management</h1>
-                <Button label={showForm ? "Close Form" : "Add Field"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
+                <Button label={showForm ? "Close Form" : "Add Field"} onClick={toggleForm} className="bg-green-500 rounded-full text-white hover:bg-green-600"/>
             </nav>
             {/* Field Form */}
             {showForm && (
@@ -131,22 +131,22 @@ export const FieldForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        readOnly value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="field Name" value={fieldName} onChange={(e) => setFieldName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Location</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder='Location' value={fieldLocation} onChange={(e) => setFieldLocation(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Extent Size</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={extentSize} onChange={(e) => setExtentSize(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={extentSize} onChange={(e) => setExtentSize(e.target.value)}>
                                     <option value={0}>Select Size</option>
                                     <option value={1000}>1000</option>
                                     <option value={2000}>2000</option>
@@ -155,17 +155,17 @@ export const FieldForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange1}/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-full" onChange={handleImageChange1}/>
                                 {/* Image Preview */}
                                 {fieldImagePreview1 && (
                                     <div className="mt-4">
-                                        <img src={fieldImagePreview1} alt="Preview" className="h-32 w-32 object-cover rounded-md"/>
+                                        <img src={fieldImagePreview1} alt="Preview" className="h-32 w-32 object-cover rounded-full"/>
                                     </div>
                                 )}
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md" onChange={handleImageChange2}/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-full" onChange={handleImageChange2}/>
                                 {/* Image Preview */}
                                 {fieldImagePreview2 && (
                                     <div className="mt-4">
@@ -175,8 +175,8 @@ export const FieldForm = () => {
                             </div>
 
                         </div>
-                        <Button label="Save" onClick={AddField}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateField} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                        <Button label="Save" onClick={AddField}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateField} className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
@@ -184,9 +184,9 @@ export const FieldForm = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Field List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md"
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full"
                            placeholder="Search Filed"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Download PDF
+                    <button className="px-4 py-2 bg-green-900 text-white rounded-full hover:bg-green-600">Download PDF
                     </button>
                 </div>
                 <table className="table m-2">
@@ -215,8 +215,8 @@ export const FieldForm = () => {
                                 <img src={fieldImagePreview2} alt="Field Image 2"
                                      className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update" onClick={() => handleRowClick(field)} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
-                                <Button label="Delete" onClick={() => DeleteField(field.fieldCode)} className="px-4 py-2 m-4 bg-red-500 text-white hover:bg-red-600"/>
+                                <Button label="Update" onClick={() => handleRowClick(field)} className="px-4 py-2 m-4 rounded-full bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete" onClick={() => DeleteField(field.fieldCode)} className="px-4 py-2 rounded-full m-4 bg-red-500 text-white hover:bg-red-600"/>
                             </td>
                         </tr>
                         ))}

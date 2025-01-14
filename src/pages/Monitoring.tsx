@@ -92,7 +92,7 @@ export const MonitoringForm = () => {
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Monitoring Management</h1>
-                <Button label={showForm ? "Close Form" : "Add Monitoring"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
+                <Button label={showForm ? "Close Form" : "Add Monitoring"} onClick={toggleForm} className="bg-green-500 rounded-full text-white hover:bg-green-600"/>
             </nav>
             {/* Monitoring Form */}
             {showForm && (
@@ -102,21 +102,21 @@ export const MonitoringForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        readOnly value={logCode}  onChange={(e) => setLogCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Date</label>
-                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md" value={logDate}  onChange={(e) => setLogDate(e.target.value)}/>
+                                <input type="date" className="w-full p-2 border border-gray-300 rounded-full" value={logDate}  onChange={(e) => setLogDate(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Details</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full"
                                        placeholder="Log Details" value={logDetails} onChange={(e) => setLogDetail(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={cropCode}  onChange={(e) => setCropCode(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={cropCode}  onChange={(e) => setCropCode(e.target.value)}>
                                     <option>Select Code</option>
                                     <option value="CRP-001">CRP-001</option>
                                     <option value="CRP-002">CRP-002</option>
@@ -125,7 +125,7 @@ export const MonitoringForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50"> Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-md"  onChange={handleImageChange}/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-full"  onChange={handleImageChange}/>
                                 {monitoringImagePreview && (
                                     <div className="mt-4">
                                         <img src={monitoringImagePreview} alt="Preview"
@@ -135,9 +135,9 @@ export const MonitoringForm = () => {
                             </div>
                         </div>
                         <Button label="Save"
-                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddMonitoring}/>
+                                className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600" onClick={AddMonitoring}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick={UpdateMonitoring}/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={UpdateMonitoring}/>
                     </form>
                 </div>
             )}
@@ -145,8 +145,8 @@ export const MonitoringForm = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Monitoring List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md" placeholder="Search Crop"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full" placeholder="Search Crop"/>
+                    <button className="px-4 py-2 bg-green-900  text-white rounded-full hover:bg-green-600">
                         Download PDF
                     </button>
                 </div>
@@ -173,9 +173,9 @@ export const MonitoringForm = () => {
                                      className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update"
-                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(monitoring)}/>
+                                        className="px-4 py-2 m-4 bg-blue-500 rounded-full text-white hover:bg-blue-600" onClick={() => handleRowClick(monitoring)}/>
                                 <Button label="Delete"
-                                        className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700" onClick ={() => DeleteMonitoring(monitoring.logCode)}/>
+                                        className=" px-4 py-2 m-4 bg-red-500 rounded-full text-white hover:text-red-700" onClick ={() => DeleteMonitoring(monitoring.logCode)}/>
                             </td>
                         </tr>
                     ))}

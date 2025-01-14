@@ -108,7 +108,7 @@ export const Staffs = () => {
             {/* Navigation bar with "Add Staff " button */}
             <nav className="flex justify-between items-center  text-white p-4 rounded-md md-7">
                 <h1 className="text-xl font-bold text-green-500">Staff Management</h1>
-                <Button label={showForm ? "Close Form" : "Add Staff"} onClick={toggleForm} className="bg-green-500 text-white hover:bg-green-600"/>
+                <Button label={showForm ? "Close Form" : "Add Staff"} onClick={toggleForm} className="bg-green-500 rounded-full text-white hover:bg-green-600"/>
             </nav>
             {/* Staff Form */}
             {showForm && (
@@ -118,27 +118,27 @@ export const Staffs = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff ID</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" readOnly value={id}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" readOnly value={id}
                                        onChange={(e) => setId(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">First Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="firstName" value={firstName}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" placeholder="firstName" value={firstName}
                                        onChange={(e) => setFirstName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Last Name</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="lastName" value={lastName}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" placeholder="lastName" value={lastName}
                                        onChange={(e) => setLastName(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Designation</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder='designation' value={designation}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" placeholder='designation' value={designation}
                                        onChange={(e) => setDesignation(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Gender</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={gender}
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={gender}
                                         onChange={(e) => setGender(e.target.value)}>
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>
@@ -148,52 +148,52 @@ export const Staffs = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Joined Date</label>
-                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md" value={joinDate}
+                                <input type="date" className="w-full p-2 border border-gray-300 rounded-full" value={joinDate}
                                        onChange={(e) => setJoinDate(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Date of Birth</label>
-                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md" value={dob}
+                                <input type="date" className="w-full p-2 border border-gray-300 rounded-full" value={dob}
                                        onChange={(e) => setDob(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Address Line1</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={addressLine1}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={addressLine1}
                                        onChange={(e) => setAddressLine1(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Address Line2</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={addressLine2}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={addressLine2}
                                        onChange={(e) => setAddressLine2(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Address Line3</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={addressLine3}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={addressLine3}
                                        onChange={(e) => setAddressLine3(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Address Line4</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={addressLine4}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={addressLine4}
                                        onChange={(e) => setAddressLine4(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Address Line5</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={addressLine5}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={addressLine5}
                                        onChange={(e) => setAddressLine5(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Contact Number</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" value={contactNumber}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-full" value={contactNumber}
                                        onChange={(e) => setContactNumber(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Email</label>
-                                <input type="email" className="w-full p-2 border border-gray-300 rounded-md" value={email}
+                                <input type="email" className="w-full p-2 border border-gray-300 rounded-full" value={email}
                                        onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Role</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md" value={role}
+                                <select className="w-full p-2 border border-gray-300 rounded-full" value={role}
                                         onChange={(e) => setRole(e.target.value)}>
                                     <option value="MANAGER">Manager</option>
                                     <option value="ADMINISTRATIVE">Administrative</option>
@@ -201,8 +201,8 @@ export const Staffs = () => {
                                 </select>
                             </div>
                         </div>
-                        <Button label="Save" onClick={addStaff}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateStaff} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                        <Button label="Save" onClick={addStaff}   className="px-4 py-2 rounded-full m-4 bg-green-500 text-white  hover:bg-green-600"/>
+                        <Button label="Update" onClick={UpdateStaff} className="px-4 py-2 rounded-full m-4 bg-blue-500 text-white hover:bg-blue-600"/>
                     </form>
                 </div>
             )}
@@ -211,9 +211,9 @@ export const Staffs = () => {
             <div>
                 <h2 className="text-2xl font-bold mb-4">Staff List</h2>
                 <div className="mb-4 flex justify-between items-center">
-                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-md"
+                    <input type="text" className="w-1/3 p-2 m-2 border border-gray-300 rounded-full"
                            placeholder="Search Staff"/>
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Download PDF
+                    <button className="px-4 py-2 bg-green-900 text-white rounded-full hover:bg-green-600">Download PDF
                     </button>
                 </div>
                 <table className="table m-2">
@@ -238,8 +238,8 @@ export const Staffs = () => {
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.email}</td>
                             <td className="border border-gray-300 px-4 py-2 border border-gray-300 rounded-md">{staff.role}</td>
                             <td className="border border-gray-300 px-4 py-2">
-                                <Button label="Update" onClick={() => handleRowClick(staff)} className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
-                                <Button label="Delete" onClick={() => handleDeleteStaff(staff.email)} className="px-4 py-2 m-4 bg-red-500 text-white hover:bg-red-600"/>
+                                <Button label="Update" onClick={() => handleRowClick(staff)} className="px-4 py-2 rounded-full m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                <Button label="Delete" onClick={() => handleDeleteStaff(staff.email)} className="px-4 py-2 rounded-full m-4 bg-red-500 text-white hover:bg-red-600"/>
                             </td>
                         </tr>
                     ))}
