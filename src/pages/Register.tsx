@@ -29,8 +29,16 @@ const Register = () => {
         const newUser = {name, email, password, role};
         dispatch(setUser(newUser));
         alert("User registered successfully!");
+        clear();
 
     };
+
+    function clear(){
+        setName("");
+        setEmail("");
+        setPassword("");
+        setRole("");
+    }
     return (
         <div className="text-white h-[100vh] flex justify-center items-center bg-cover bg-center bg-register-bg">
             <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative">

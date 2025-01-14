@@ -26,7 +26,10 @@ export const EquipmentForm = () => {
         e.preventDefault();
         const newEquipment = {equipmentCode,equipmentName,equipmentType,status,fieldCode,staffCode}
         dispatch(setEquipment(newEquipment))
-        alert("Successfully Added Equipment")
+        alert("Successfully Added Equipment");
+        clear();
+        setShowForm(false);
+
     }
     //update equipment
     function handleRowClick(equipment: Equipment) {
@@ -43,6 +46,7 @@ export const EquipmentForm = () => {
         const updateEquipments = {equipmentCode,equipmentName,equipmentType,status,fieldCode,staffCode};
         dispatch(updateEquipment(updateEquipments));
         alert("Successfully Update Equipment");
+        clear();
         setShowForm(false);
     }
 
@@ -51,6 +55,15 @@ export const EquipmentForm = () => {
         alert("Deleting Equipment");
         dispatch(deleteEquipment(equipmentCode));
         setShowForm(false);
+    }
+    function clear(){
+        setEquipmentCode("");
+        setEquipmentName("");
+        setStatus("");
+        setEquipmentType("");
+        setFieldCode("");
+        setStaffCode("");
+
     }
     return (
         <div className="main">

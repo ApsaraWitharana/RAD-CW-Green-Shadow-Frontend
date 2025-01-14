@@ -28,6 +28,7 @@ const Login = () => {
             const userRole = userExists.role.toLowerCase();
             if (permissions[userRole]) {
                 alert("User logged in successfully!");
+                clear();
                 navigate("/dashboard", { state: { role: userRole, permissions: permissions[userRole] } });
             } else {
                 alert("Role is not recognized!");
@@ -37,6 +38,11 @@ const Login = () => {
             alert("Invalid email or password!");
         }
     };
+
+    function clear(){
+        setEmail("");
+        setPassword("");
+    }
 
     return (
         <div className="text-white h-[100vh] flex justify-center items-center bg-cover bg-center bg-login-bg">

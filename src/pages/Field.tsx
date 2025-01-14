@@ -62,6 +62,8 @@ export const FieldForm = () => {
         };
         dispatch(setField(newField));
         alert("Field member added successfully!!");
+        clear();
+        setShowForm(false);
     }
     //update field
     function handleRowClick(field:Field){
@@ -82,6 +84,7 @@ export const FieldForm = () => {
         };
         dispatch(updateField(updatedFields));
         alert("Updated Field successfully!!");
+        clear();
         setShowForm(false);
     }
 
@@ -90,6 +93,15 @@ export const FieldForm = () => {
         alert("Field Deleted Successfully!!");
         dispatch(deleteField(fieldCode));
         setShowForm(false);
+    }
+    function clear(){
+        setFieldCode("");
+        setFieldName("");
+        setFieldLocation("");
+        setExtentSize("")
+        setFieldImage1("");
+        setFieldImage2("");
+
     }
     return (
         <div className="main">
