@@ -1,5 +1,7 @@
 import "../style/Dashboard.css"
 import { IonIcon } from "@ionic/react";
+import BarChart from "../component/Barchart.tsx";
+
 import {
     eyeOutline,
     peopleOutline,
@@ -49,6 +51,11 @@ export function Dashboard() {
                             <IonIcon icon={cashOutline} />
                         </div>
                     </div>
+                </div>
+                {/* Bar Chart Section */}
+                <div className="chart-container mt-4 p-5">
+                    <h2>Crop Storage Bar Chart</h2>
+                    <BarChart />
                 </div>
             </main>
         </div>
