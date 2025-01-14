@@ -7,7 +7,19 @@ import {Monitoring} from "../model/Monitoring.ts";
 
 export const MonitoringForm = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastLogNumber, setLastLogNumber] = useState("");
+
+    //generate code
+    const generateLogCode =()=>{
+        const nextNumber = lastLogNumber +1;
+        const formattedNumber = String(nextNumber).padStart(3, "0");
+        setLastLogNumber(nextNumber);
+        return `LOG-${formattedNumber}`;
+    };
     const toggleForm = () => {
+        if (!showForm){
+            setLogCode(generateLogCode());
+        }
         setShowForm(!showForm);
     };
 
@@ -91,7 +103,7 @@ export const MonitoringForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code" value={logCode}  onChange={(e) => setLogCode(e.target.value)}/>
+                                       readOnly value={logCode}  onChange={(e) => setLogCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Date</label>

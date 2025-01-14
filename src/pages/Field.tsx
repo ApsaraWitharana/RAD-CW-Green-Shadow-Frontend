@@ -8,7 +8,20 @@ import { Button } from "../component/Button";
 
 export const FieldForm = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastFieldNumber, setLastFieldNumber] = useState(0);
+
+    //generate code
+    const generateFieldCode = () => {
+        const nextNumber = lastFieldNumber + 1;
+        const formattedNumber = String(nextNumber).padStart(3, "0");
+        setLastFieldNumber(nextNumber);
+        return `FED -${formattedNumber}`;
+    };
+
     const toggleForm = () => {
+        if (!showForm){
+            setFieldCode(generateFieldCode());
+        }
         setShowForm(!showForm);
     };
 
@@ -119,7 +132,7 @@ export const FieldForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="code" value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}/>
+                                       readOnly value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Name</label>

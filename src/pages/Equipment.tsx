@@ -8,7 +8,20 @@ import {Equipment} from "../model/Equipment.ts";
 
 export const EquipmentForm = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastEquipmentNumber, setLastEquipmentNumber] = useState(0);
+
+    //generate code
+
+    const genetateEquipmentCode=()=>{
+        const nextNumber = lastEquipmentNumber + 1;
+        const formattedNumber = String(nextNumber).padStart(3, "0");
+        setLastEquipmentNumber(nextNumber);
+        return `EPT-${formattedNumber}`;
+    };
     const toggleForm = () => {
+        if (!showForm){
+            setEquipmentCode(genetateEquipmentCode());
+        }
         setShowForm(!showForm);
     };
 
@@ -80,7 +93,7 @@ export const EquipmentForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code" value={equipmentCode} onChange={(e) => setEquipmentCode(e.target.value)}/>
+                                       readOnly value={equipmentCode} onChange={(e) => setEquipmentCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Equipment Name</label>

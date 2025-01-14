@@ -8,7 +8,19 @@ import {Button} from "../component/Button.tsx";
 
 export const Staffs = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastStaffId, setLastStaffId] = useState("");
+
+    //generate id
+    const generateStaffId =()=>{
+        const nextNumber = lastStaffId + 1;
+        const formattedNumber = String(nextNumber).padStart(3, "0");
+        setLastStaffId(nextNumber);
+        return `STF-${formattedNumber}`;
+    };
     const toggleForm = () => {
+        if (!showForm){
+            setId(generateStaffId());
+        }
         setShowForm(!showForm);
     };
     const dispatch = useDispatch();
@@ -106,7 +118,7 @@ export const Staffs = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Staff ID</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" placeholder="id" value={id}
+                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md" readOnly value={id}
                                        onChange={(e) => setId(e.target.value)}/>
                             </div>
                             <div>

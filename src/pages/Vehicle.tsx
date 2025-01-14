@@ -7,7 +7,20 @@ import {Vehicle} from "../model/Vehicle.ts";
 
 export const VehicleForm = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastVehicleNumber, setLastVehicleNumber] = useState(0);
+
+    //generate code
+    const generateVehicleCode = () => {
+        const nextNumber = lastVehicleNumber + 1;
+        const formattedNumber = String(nextNumber).padStart(3, "0");
+        setLastVehicleNumber(nextNumber);
+        return `VEH-${formattedNumber}`;
+    };
+
     const toggleForm = () => {
+        if (!showForm){
+            setVehicleCode(generateVehicleCode());
+        }
         setShowForm(!showForm);
     };
 
@@ -83,7 +96,7 @@ export const VehicleForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Vehicle Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code" value={vehicleCode} onChange={(e) => setVehicleCode(e.target.value)}/>
+                                       readOnly value={vehicleCode} onChange={(e) => setVehicleCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">License Plate Number</label>

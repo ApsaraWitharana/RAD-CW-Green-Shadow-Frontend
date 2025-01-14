@@ -7,7 +7,19 @@ import {Crop} from "../model/Crop.ts";
 
 export const CropForm = () => {
     const [showForm, setShowForm] = useState(false);
+    const [lastCropNumber, setLastCropNumber] = useState(0);
+
+    //generate code
+    const generateCropCode = () => {
+        const nextNumber = lastCropNumber + 1;
+        const formattedNumber = String(nextNumber).padStart(3, "0"); // Formats number to 3 digits
+        setLastCropNumber(nextNumber);
+        return `CRP-${formattedNumber}`;
+    };
     const toggleForm = () => {
+        if (!showForm) {
+            setCropCode(generateCropCode());
+        }
         setShowForm(!showForm);
     };
     // image preview
@@ -97,8 +109,8 @@ export const CropForm = () => {
                         <div className="grid grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code" value={cropCode}
+                                <input type="text" readOnly className="w-full p-2 border border-gray-300 rounded-md"
+                                        value={cropCode}
                                        onChange={(e) => setCropCode(e.target.value)}/>
                             </div>
                             <div>
