@@ -2,7 +2,8 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setMonitoring} from "../slice/Monitoring.ts";
+import {setMonitoring, updateMonitoring} from "../slice/Monitoring.ts";
+import {Monitoring} from "../model/Monitoring.ts";
 
 export const MonitoringForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -42,6 +43,23 @@ export const MonitoringForm = () => {
         alert("Log was added Successfully!");
         setShowForm(false);
     }
+
+    //update monitoring
+    function handleRowClick(monitoring:Monitoring) {
+        setLogCode(monitoring.logCode);
+        setLogDate(monitoring.logDate);
+        setLogDetail(monitoring.logDetails);
+        setCropCode(monitoring.cropCode);
+        setObservedImage(monitoring.observedImage);
+        setShowForm(true);
+    }
+
+    function UpdateMonitoring() {
+        const updatedMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
+        dispatch(updateMonitoring(updatedMonitoring));
+        alert("Log was updated Successfully!");
+        setShowForm(false);
+    }
     return (
         <div className="main">
             <nav className="flex justify-between items-center text-white p-4 rounded-md md-7">
@@ -57,20 +75,20 @@ export const MonitoringForm = () => {
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Code</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Code"  onChange={(e) => setLogCode(e.target.value)}/>
+                                       placeholder="Code" value={logCode}  onChange={(e) => setLogCode(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Date</label>
-                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setLogDate(e.target.value)}/>
+                                <input type="date" className="w-full p-2 border border-gray-300 rounded-md" value={logDate}  onChange={(e) => setLogDate(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Log Details</label>
                                 <input type="text" className="w-full p-2 border border-gray-300 rounded-md"
-                                       placeholder="Log Details"  onChange={(e) => setLogDetail(e.target.value)}/>
+                                       placeholder="Log Details" value={logDetails} onChange={(e) => setLogDetail(e.target.value)}/>
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Crop Code</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-md"  onChange={(e) => setCropCode(e.target.value)}>
+                                <select className="w-full p-2 border border-gray-300 rounded-md" value={cropCode}  onChange={(e) => setCropCode(e.target.value)}>
                                     <option>Select Code</option>
                                     <option value="CRP-001">CRP-001</option>
                                     <option value="CRP-002">CRP-002</option>
@@ -91,7 +109,7 @@ export const MonitoringForm = () => {
                         <Button label="Save"
                                 className="px-4 py-2 m-4 bg-green-500 text-white rounded-md hover:bg-green-600" onClick={AddMonitoring}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-md hover:bg-blue-600" onClick={UpdateMonitoring}/>
                     </form>
                 </div>
             )}
@@ -127,7 +145,7 @@ export const MonitoringForm = () => {
                                      className="h-16 w-16 object-cover rounded-md"/>}</td>
                             <td className="border border-gray-300 px-4 py-2">
                                 <Button label="Update"
-                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                                        className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(monitoring)}/>
                                 <Button label="Delete"
                                         className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700"/>
                             </td>
