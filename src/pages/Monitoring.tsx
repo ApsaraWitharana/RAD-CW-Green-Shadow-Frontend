@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {setMonitoring, updateMonitoring} from "../slice/Monitoring.ts";
+import {deleteMonitoring, setMonitoring, updateMonitoring} from "../slice/Monitoring.ts";
 import {Monitoring} from "../model/Monitoring.ts";
 
 export const MonitoringForm = () => {
@@ -41,6 +41,7 @@ export const MonitoringForm = () => {
         const newMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
         dispatch(setMonitoring(newMonitoring));
         alert("Log was added Successfully!");
+        clear();
         setShowForm(false);
     }
 
@@ -58,7 +59,22 @@ export const MonitoringForm = () => {
         const updatedMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
         dispatch(updateMonitoring(updatedMonitoring));
         alert("Log was updated Successfully!");
+        clear();
         setShowForm(false);
+    }
+
+    //delete log
+    function DeleteMonitoring(logCode:string) {
+        alert("Log was deleted Successfully!");
+        dispatch(deleteMonitoring(logCode));
+        setShowForm(false);
+    }
+    function clear(){
+        setLogCode("");
+        setLogDate("");
+        setLogDetail("");
+        setCropCode("");
+        setObservedImage("");
     }
     return (
         <div className="main">
@@ -147,7 +163,7 @@ export const MonitoringForm = () => {
                                 <Button label="Update"
                                         className="px-4 py-2 m-4 bg-blue-500 text-white hover:bg-blue-600" onClick={() => handleRowClick(monitoring)}/>
                                 <Button label="Delete"
-                                        className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700"/>
+                                        className=" px-4 py-2 m-4 bg-red-500 text-white hover:text-red-700" onClick ={() => DeleteMonitoring(monitoring.logCode)}/>
                             </td>
                         </tr>
                     ))}

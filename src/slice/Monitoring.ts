@@ -23,8 +23,12 @@ const monitoringSlice = createSlice({
                 state.monitorings[index] = action.payload;
             }
 
+        },
+        deleteMonitoring:(state, action:PayloadAction<string>)=>{
+            state.monitorings = state.monitorings.filter(
+                (monitoring)=> monitoring.logCode !== action.payload);
         }
-    }
+    },
 });
-export const {setMonitoring,updateMonitoring} = monitoringSlice.actions;
+export const {setMonitoring,updateMonitoring,deleteMonitoring} = monitoringSlice.actions;
 export default monitoringSlice.reducer;
