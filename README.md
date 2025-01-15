@@ -1,50 +1,113 @@
-# React + TypeScript + Vite
+# Green Shadow Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<a href="https://git.io/typing-svg">     
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=50&pause=1000&center=true&vCenter=true&color=00FF00&width=835&height=70&lines=GREEN+SHADOW+FRONTEND" alt="Green Shadow Frontend" />
+</a>
 
-Currently, two official plugins are available:
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [License](#license)
+- [Contact](#contact)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Introduction
 
-## Expanding the ESLint configuration
+Green Shadow Frontend is a modern, interactive, and scalable web application built using React, Redux Toolkit, and Vite. It is designed for efficient management of resources such as crops, equipment, vehicles, staff, and fields. With role-based dashboards, CRUD functionalities, and real-time logs, the system ensures smooth operations and monitoring. It caters to Managers, Administrators, and Scientists with user-specific functionalities.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Role-Based Dashboards:**
+  - **Manager:** Oversee resources and team management.
+  - **Administrator:** Manage users, permissions, and system operations.
+  - **Scientist:** Monitor fields and crops, log findings, and conduct research.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **CRUD Operations:**
+  - Manage resources: crops, equipment, vehicles, staff, and fields.
+  - Real-time logs: Staff logs, Field logs, Monitoring logs.
+
+- **Interactive UI:**
+  - Fully responsive design.
+  - Dynamic updates powered by React and Redux Toolkit.
+
+
+## Technologies Used
+
+- **Frontend:** React (18.x), Redux Toolkit, Vite (4.x)
+- **State Management:** Redux Slice Reducers
+- **Styling:** Teilwind CSS
+
+## Setup and Installation
+
+To set up the project locally, follow these steps:
+
+1. **Clone the repository:**
+    ```bash
+    https://github.com/ApsaraWitharana/RAD-CW-Green-Shadow-Frontend.git
+    ```
+
+2. **Navigate to the project directory:**
+    ```bash
+    cd RAD-CW-Green-Shadow-Frontend
+    ```
+
+3. **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4. **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+5. **Access the application:**
+    Open your browser and navigate to `http://localhost:5173/`.
+
+## Usage
+
+1. Login with role-based credentials.
+2. Explore the features based on your role (Manager, Administrator, Scientist).
+3. Perform CRUD operations, monitor resources, and use real-time logs for efficient management.
+
+## Project Structure
+
+```
+📁 src
+├── 📂 components        # Reusable React components
+├── 📂 model             # Redux slices for state management
+├── 📂 pages             # Page-level components
+├── 📂 slice             # API calls and service utilities
+├── 📂 assets            # Static assets like images, icons, and styles
+├── 📂 store             # Helper functions
+├── 📂 style             # Global and component-specific styles
+├── App.jsx             # Main application file
+└── main.jsx            # Vite entry point
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Key Directories
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **components/**: Contains reusable UI components like buttons, forms, and cards.
+- **model/**: Includes Redux slices for managing application state.
+- **pages/**: Page-level components such as Login, Dashboard, and Resource Management.
+- **slice/**: API call utilities built with Axios.
+- **store/**: Helper functions for state configuration.
+- **style/**: Global and scoped CSS files for consistent styling.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For inquiries or collaboration:
+- **Author:** [Sachini Apsara](https://github.com/ApsaraWitharana)
+- **Project Link:** [Green Shadow Frontend]( https://github.com/ApsaraWitharana/RAD-CW-Green-Shadow-Frontend.git)
+
+<div align="center">
+    © 2025 All Rights Reserved, Designed By Sachini Apsara
+</div>
+
