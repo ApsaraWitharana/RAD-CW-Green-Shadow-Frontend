@@ -97,6 +97,29 @@ To set up the project locally, follow these steps:
 - **store/**: Helper functions for state configuration.
 - **style/**: Global and scoped CSS files for consistent styling.
 
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; text-align: center;">
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Login</h3>
+        <img src="https://github.com/user-attachments/assets/58ad3242-d95d-4a58-b24f-21e8467351e5" alt="Login Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Signup</h3>
+        <img src="https://github.com/user-attachments/assets/cb43c700-feb3-4bde-ba0a-6aea8a41c507" alt="Signup Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Dashboard</h3>
+        <img src="https://github.com/user-attachments/assets/ed2109f2-c41a-4419-a075-e67fd079ff4b" alt="Dashboard Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Staff Page</h3>
+        <img src="https://github.com/user-attachments/assets/f6d25298-d465-4278-8243-f3f5b1b77616" alt="Staff Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Field Page</h3>
+        <img src="https://github.com/user-attachments/assets/855c3bf2-980d-4fd1-bf31-5af00c07571d" alt="Field Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+</div>
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
