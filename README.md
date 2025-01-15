@@ -97,6 +97,7 @@ To set up the project locally, follow these steps:
 - **store/**: Helper functions for state configuration.
 - **style/**: Global and scoped CSS files for consistent styling.
 
+## React GREEN SHADOW SYSTE - scren shot
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; text-align: center;">
     <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
         <h3>Login</h3>
@@ -117,6 +118,23 @@ To set up the project locally, follow these steps:
     <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
         <h3>Field Page</h3>
         <img src="https://github.com/user-attachments/assets/855c3bf2-980d-4fd1-bf31-5af00c07571d" alt="Field Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+</div>
+
+## Spring-Frontend GREEN SHADOW with HTML,CSS,JS
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; text-align: center;">
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Signup</h3>
+        <img src="https://github.com/user-attachments/assets/26238883-a822-40ee-b9e7-3bdaf7b2f2a5" alt="Login Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Dashboard</h3>
+        <img src="https://github.com/user-attachments/assets/ec738816-fdf2-4bc3-a875-a427e2471a6c" alt="Signup Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="flex: 1 1 calc(50% - 16px); max-width: calc(50% - 16px);">
+        <h3>Vehicle</h3>
+        <img src="https://github.com/user-attachments/assets/067f3193-5cdc-469f-95c7-c0dfb5e9d65b" alt="Dashboard Page" style="width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px;">
     </div>
 </div>
 
