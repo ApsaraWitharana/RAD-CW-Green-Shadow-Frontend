@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-black-900: #f2f2fc;
+    --bg-black-100: #fdf9ff;
+    --bg-black-50: #e8dfec;
+    --text-black-900: #302e4d;
+    --text-black-700: #302e4d;
+    --skin-color: #1dd748;
+    --blue: rgba(51, 58, 51, 0.42);
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #070a0a;
+}
+
+/* Card Box */
+.cardBox {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+
+}
+/* Individual Card */
+.card {
+    background-color: #1f1f1f;
+    width: 250px;
+    height: 100px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+    background-color: black;
+    color: var(--skin-color);
+}
+
+.card .numbers {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgba(77, 84, 94, 0.98);
+}
+
+.card .cardName {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.iconBx {
+    font-size: 2rem;
+    color: #4fd1c5;
+}
+
+/*//bar-chart css*/
+.chart-container {
+
+    margin-left: 10px;
+    margin-right: 20px;
+    height: 900px;
+    width: 50%;
+    padding: 20px;
+    background: rgba(12, 9, 9, 0.67);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h2 {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    text-align: center;
+    align-items: center;
+    color: white;
+    margin-left: 50%;
+
+
+}
