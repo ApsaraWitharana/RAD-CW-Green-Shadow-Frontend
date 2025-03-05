@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {deleteEquipment, setEquipment, updateEquipment} from "../slice/Equipment.ts";
+import {deleteEquipment, setEquipment, updateEquipment} from "../reducer/EquipmentReducer.ts";
 import {Equipment} from "../model/Equipment.ts";
 
 

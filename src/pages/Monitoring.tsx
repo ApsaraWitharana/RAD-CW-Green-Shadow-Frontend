@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {deleteMonitoring, setMonitoring, updateMonitoring} from "../slice/Monitoring.ts";
+import {deleteMonitoring, setMonitoring, updateMonitoring} from "../reducer/Monitoring.ts";
 import {Monitoring} from "../model/Monitoring.ts";
 
 export const MonitoringForm = () => {

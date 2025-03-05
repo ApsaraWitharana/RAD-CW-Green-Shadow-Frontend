@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {deleteCrop, setCrop, updateCrop} from "../slice/CropSlice.ts";
+import {deleteCrop, setCrop, updateCrop} from "../reducer/CropReducer.ts";
 import {RootState} from "../store/Store.ts";
 import {Button} from "../component/Button.tsx";
 import {Crop} from "../model/Crop.ts";

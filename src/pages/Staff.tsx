@@ -2,7 +2,7 @@ import  { useState } from "react";
 import "../style/Staff.css"
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {deleteStaff, setStaff, updateStaff} from "../slice/StaffSlice.ts";
+import {deleteStaff, setStaff, updateStaff} from "../reducer/StaffSlice.ts";
 import {Staff} from "../model/Staff.ts";
 import {Button} from "../component/Button.tsx";
 

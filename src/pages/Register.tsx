@@ -3,7 +3,7 @@ import "../index.css";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import {RootState} from "../store/Store.ts";
-import {setUser} from "../slice/UserSlice.ts";
+import {setUser} from "../reducer/UserSlice.ts";
 
 const Register = () => {
 
