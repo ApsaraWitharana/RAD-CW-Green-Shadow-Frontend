@@ -5,7 +5,7 @@ import cropSlice from "../reducer/CropReducer.ts";
 import equipmentSlice from "../reducer/EquipmentReducer.ts";
 import vehicleSlice from "../reducer/Vehicle.ts";
 import userSlice from "../reducer/UserSlice.ts";
-import monitoring from "../reducer/Monitoring.ts";
+import monitoring from "../reducer/MonitoringReducer.ts";
 
 
 const rootReducer = combineReducers({
