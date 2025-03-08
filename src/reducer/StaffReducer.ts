@@ -85,7 +85,7 @@ const staffReducer = createSlice({
                 console.log('Failed to update ', action.payload);
             })
             .addCase(UpdateStaff.fulfilled, (state, action) => {
-                const staff = state.find((staff: Staff) => staff.id === action.payload.id);
+                const staff = state.find((staff: Staff) => staff.id == action.payload.id);
                 if (staff) {
                     staff.firstName = action.payload.firstName;
                     staff.lastName = action.payload.lastName;

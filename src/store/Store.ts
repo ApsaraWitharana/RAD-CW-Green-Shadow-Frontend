@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import staffSlice from "../reducer/StaffReducer.ts";
-import vehicleSlice from "../reducer/Vehicle.ts";
+import vehicleSlice from "../reducer/VehicleReducer.ts";
 import userSlice from "../reducer/UserSlice.ts";
 import cropReducer from "../reducer/CropReducer.ts";
 import equipmentReducer from "../reducer/EquipmentReducer.ts";

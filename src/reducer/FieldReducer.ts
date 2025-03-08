@@ -107,7 +107,7 @@ const fieldReducer = createSlice({
         })
         .addCase(getField.rejected, (state, action) => {
             console.error('Failed to get', action.payload);
-        })
+        });
 
         //delete
         builder

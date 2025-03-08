@@ -2,7 +2,7 @@ import { useState } from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {deleteVehicle, setVehicle, updateVehicle} from "../reducer/Vehicle.ts";
+import {deleteVehicle, setVehicle, updateVehicle} from "../reducer/VehicleReducer.ts";
 import {Vehicle} from "../model/Vehicle.ts";
 import {searchOutline} from "ionicons/icons";
 import {IonIcon} from "@ionic/react";
