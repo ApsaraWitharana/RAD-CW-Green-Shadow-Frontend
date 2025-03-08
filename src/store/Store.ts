@@ -1,21 +1,21 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import staffSlice from "../reducer/StaffSlice.ts";
-import fieldSlice from "../reducer/FieldReducer.ts";
-import cropSlice from "../reducer/CropReducer.ts";
-import equipmentSlice from "../reducer/EquipmentReducer.ts";
+import staffSlice from "../reducer/StaffReducer.ts";
 import vehicleSlice from "../reducer/Vehicle.ts";
 import userSlice from "../reducer/UserSlice.ts";
-import monitoring from "../reducer/MonitoringReducer.ts";
+import cropReducer from "../reducer/CropReducer.ts";
+import equipmentReducer from "../reducer/EquipmentReducer.ts";
+import monitoringReducer from "../reducer/MonitoringReducer.ts";
+import fieldReducer from "../reducer/FieldReducer.ts";
 
 
 const rootReducer = combineReducers({
     user:userSlice,
     staff: staffSlice,
-    field:fieldSlice,
-    crop:cropSlice,
-    equipment:equipmentSlice,
+    field:fieldReducer,
+    crop:cropReducer,
+    equipment:equipmentReducer,
     vehicle:vehicleSlice,
-    monitoring:monitoring
+    monitoring:monitoringReducer,
 
 });
 

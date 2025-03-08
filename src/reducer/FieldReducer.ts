@@ -57,7 +57,7 @@ export const deleteField = createAsyncThunk(
             return console.error('error', error);
         }
     }
-)
+);
 
 const fieldReducer = createSlice({
     name: "field",

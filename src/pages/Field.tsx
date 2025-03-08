@@ -2,7 +2,7 @@ import "../style/FieldForm.css";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {deleteField, setField, updateField} from "../reducer/FieldReducer.ts";
+import {deleteField} from "../reducer/FieldReducer.ts";
 import {Field} from "../model/Field.ts";
 import { Button } from "../component/Button";
 
