@@ -1,14 +1,15 @@
 import "../style/FieldForm.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {deleteField} from "../reducer/FieldReducer.ts";
+import {AppDispatch} from "../store/Store.ts";
+import { deleteField, getField, saveField, UpdateField} from "../reducer/FieldReducer.ts";
 import {Field} from "../model/Field.ts";
 import { Button } from "../component/Button";
 
 export const FieldForm = () => {
     const [showForm, setShowForm] = useState(false);
     const [lastFieldNumber, setLastFieldNumber] = useState(0);
+
 
     //generate code
     const generateFieldCode = () => {
@@ -25,6 +26,25 @@ export const FieldForm = () => {
         setShowForm(!showForm);
     };
 
+
+    const dispatch = useDispatch<AppDispatch>();
+    const [fieldCode, setFieldCode] = useState("");
+    const [fieldName, setFieldName] = useState("");
+    const [fieldLocation, setFieldLocation] = useState("");
+    const [extentSize, setExtentSize] = useState<number>(0);
+    const [fieldImage1, setFieldImage1] = useState<string|null>(null);
+    const [fieldImage2, setFieldImage2] = useState<string|null>(null);
+    const field= useSelector((state) =>state.field);
+
+    useEffect(() => {
+        if (field.length === 0){
+            dispatch(getField())
+        }
+        // const newFieldCode = generateFieldCode();
+        // setFieldCode(newFieldCode);
+        console.log("dispatch ");
+
+    }, [lastFieldNumber,dispatch]);
    // image preview
     const [fieldImagePreview1, setFieldImagePreview1] = useState("");
     const [fieldImagePreview2, setFieldImagePreview2] = useState("");
@@ -56,14 +76,6 @@ export const FieldForm = () => {
         }
     };
 
-    const dispatch = useDispatch();
-    const [fieldCode, setFieldCode] = useState("");
-    const [fieldName, setFieldName] = useState("");
-    const [fieldLocation, setFieldLocation] = useState("");
-    const [extentSize, setExtentSize] = useState<number>(0);
-    const [fieldImage1, setFieldImage1] = useState("");
-    const [fieldImage2, setFieldImage2] = useState("");
-    const field= useSelector((state:RootState) =>state.field.fields);
 
     //add field
     function AddField(e){
@@ -73,8 +85,9 @@ export const FieldForm = () => {
             fieldLocation:fieldLocation,extentSize:extentSize,
             fieldImage1:fieldImage1,fieldImage2:fieldImage2,
         };
-        dispatch(setField(newField));
+        dispatch(saveField(newField));
         alert("Field member added successfully!!");
+        getField();
         clear();
         setShowForm(false);
     }
@@ -89,14 +102,15 @@ export const FieldForm = () => {
         setShowForm(true);
     }
 
-    function UpdateField(){
+    function updateField(){
         const updatedFields = {
             fieldCode:fieldCode,fieldName:fieldName,
             fieldLocation:fieldLocation,extentSize:extentSize,
             fieldImage1:fieldImage1,fieldImage2:fieldImage2,
         };
-        dispatch(updateField(updatedFields));
+        dispatch(UpdateField(updatedFields));
         alert("Updated Field successfully!!");
+        getField();
         clear();
         setShowForm(false);
     }
@@ -111,7 +125,7 @@ export const FieldForm = () => {
         setFieldCode("");
         setFieldName("");
         setFieldLocation("");
-        setExtentSize("")
+        setExtentSize("");
         setFieldImage1("");
         setFieldImage2("");
 
@@ -146,16 +160,22 @@ export const FieldForm = () => {
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Extent Size</label>
-                                <select className="w-full p-2 border border-gray-300 rounded-full" value={extentSize} onChange={(e) => setExtentSize(e.target.value)}>
+                                <select
+                                    className="w-full p-2 border border-gray-300 rounded-full"
+                                    value={extentSize}
+                                    onChange={(e) => setExtentSize(Number(e.target.value))} // Make sure to cast to Number
+                                >
                                     <option value={0}>Select Size</option>
                                     <option value={1000}>1000</option>
                                     <option value={2000}>2000</option>
                                     <option value={3000}>3000</option>
                                 </select>
+
                             </div>
                             <div>
                                 <label className="block mb-1 text-gray-50">Field Image</label>
-                                <input type="file" className="w-full p-2 border border-gray-300 rounded-full" onChange={handleImageChange1}/>
+                                <input type="file" className="w-full p-2 border border-gray-300 rounded-full"
+                                       onChange={handleImageChange1}/>
                                 {/* Image Preview */}
                                 {fieldImagePreview1 && (
                                     <div className="mt-4">
@@ -176,7 +196,7 @@ export const FieldForm = () => {
 
                         </div>
                         <Button label="Save" onClick={AddField}   className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateField} className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600"/>
+                        <Button label="Update" onClick={updateField} className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600"/>
                     </form>
                 </div>
             )}

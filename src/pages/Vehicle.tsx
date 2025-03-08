@@ -1,12 +1,9 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {deleteVehicle, setVehicle, updateVehicle} from "../reducer/VehicleReducer.ts";
+import {AppDispatch, RootState} from "../store/Store.ts";
+import {deleteVehicle, getVehicle, saveVehicle} from "../reducer/VehicleReducer.ts";
 import {Vehicle} from "../model/Vehicle.ts";
-import {searchOutline} from "ionicons/icons";
-import {IonIcon} from "@ionic/react";
-
 
 
 export const VehicleForm = () => {
@@ -28,7 +25,7 @@ export const VehicleForm = () => {
         setShowForm(!showForm);
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [vehicleCode, setVehicleCode] = useState("");
     const [licensePlateNumber,setLicensePlateNumber] = useState<number>();
     const [vehicleCategory, setVehicleCategory] = useState("");
@@ -36,13 +33,20 @@ export const VehicleForm = () => {
     const [status,setStatus] = useState("");
     const [staffId,setStaffId] = useState("");
     const [remarks,setRemarks] = useState("");
-    const vehicles = useSelector((state:RootState) => state.vehicle.vehicles);
+    const vehicles = useSelector((state:RootState) => state.vehicle);
+
+    useEffect(() => {
+        if (vehicles.length === 0){
+            dispatch(getVehicle())
+        }
+        console.log("dispatch");
+    }, [lastVehicleNumber,dispatch]);
 
     //add vehicle
     function AddVehicle(e) {
         e.preventDefault();
         const newVehicle = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks};
-        dispatch(setVehicle(newVehicle));
+        dispatch(saveVehicle(newVehicle));
         alert("Vehicle Added Successfully!");
         clearData();
         setShowForm(false);
@@ -60,9 +64,9 @@ export const VehicleForm = () => {
         setShowForm(true);
     }
 
-    function UpdateVehicle() {
+    function updateVehicle() {
         const updateVehicles = {vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,staffId,remarks}
-        dispatch(updateVehicle(updateVehicles));
+        dispatch(updateVehicles(updateVehicles));
         alert("Vehicle Updated Successfully!");
         clearData();
         setShowForm(false);
@@ -147,7 +151,7 @@ export const VehicleForm = () => {
                         <Button label="Save"
                                 className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600" onClick={AddVehicle}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={UpdateVehicle}/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={updateVehicle}/>
                     </form>
                 </div>
             )}

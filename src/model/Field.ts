@@ -3,11 +3,11 @@ export class Field {
      fieldName: string;
      fieldLocation: string;
      extentSize: number;
-     fieldImage1:string;
-     fieldImage2: string;
+     fieldImage1:string |null;
+     fieldImage2: string | null;
 
 
-    constructor(fieldCode: string, fieldName: string, fieldLocation: string, extentSize: number, fieldImage1: string, fieldImage2: string) {
+    constructor(fieldCode: string, fieldName: string, fieldLocation: string, extentSize: number, fieldImage1: string | null, fieldImage2: string | null) {
         this.fieldCode = fieldCode;
         this.fieldName = fieldName;
         this.fieldLocation = fieldLocation;

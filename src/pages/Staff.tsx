@@ -1,8 +1,8 @@
-import  { useState } from "react";
+import {useEffect, useState} from "react";
 import "../style/Staff.css"
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {deleteStaff, setStaff, updateStaff} from "../reducer/StaffReducer.ts";
+import {AppDispatch, RootState} from "../store/Store.ts";
+import {deleteStaff, getStaff, saveStaff, UpdateStaff} from "../reducer/StaffReducer.ts";
 import {Staff} from "../model/Staff.ts";
 import {Button} from "../component/Button.tsx";
 
@@ -23,7 +23,7 @@ export const Staffs = () => {
         }
         setShowForm(!showForm);
     };
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [id, setId] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -39,7 +39,14 @@ export const Staffs = () => {
     const [contactNumber, setContactNumber] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
-    const  staff = useSelector((state:RootState) => state.staff.staffs);
+    const  staff = useSelector((state:RootState) => state.staff);
+
+    useEffect(() => {
+        if (staff.length === 0){
+            dispatch(getStaff());
+        }
+        console.log(staff);
+    }, [lastStaffId, dispatch]);
 
     //add staff
     function addStaff(e) {
@@ -47,7 +54,7 @@ export const Staffs = () => {
         const newStaff = {
             id, firstName, lastName, designation, gender, joinDate, dob, addressLine1, addressLine2, addressLine3, addressLine4, addressLine5, contactNumber, email, role
         };
-        dispatch(setStaff(newStaff));
+        dispatch(saveStaff(newStaff));
         alert("Staff member added successfully!");
         clearData();
     }
@@ -71,9 +78,9 @@ export const Staffs = () => {
         setRole(staff.role);
         setShowForm(true);
     }
-    function UpdateStaff() {
+    function updateStaff() {
         const updateStaffs ={id, firstName, lastName, designation, gender, joinDate, dob, addressLine1, addressLine2, addressLine3, addressLine4, addressLine5, contactNumber, email, role};
-        dispatch(updateStaff(updateStaffs));
+        dispatch(UpdateStaff(updateStaffs));
         alert("Staff member updated successfully!");
         setShowForm(false);
     }
@@ -202,7 +209,7 @@ export const Staffs = () => {
                             </div>
                         </div>
                         <Button label="Save" onClick={addStaff}   className="px-4 py-2 rounded-full m-4 bg-green-500 text-white  hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateStaff} className="px-4 py-2 rounded-full m-4 bg-blue-500 text-white hover:bg-blue-600"/>
+                        <Button label="Update" onClick={updateStaff} className="px-4 py-2 rounded-full m-4 bg-blue-500 text-white hover:bg-blue-600"/>
                     </form>
                 </div>
             )}

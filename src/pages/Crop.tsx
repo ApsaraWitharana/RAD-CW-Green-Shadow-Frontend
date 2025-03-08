@@ -1,7 +1,7 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {deleteCrop, setCrop, updateCrop} from "../reducer/CropReducer.ts";
-import {RootState} from "../store/Store.ts";
+import {deleteCrop,getCrop,UpdateCrop,saveCrop} from "../reducer/CropReducer.ts";
+import {AppDispatch} from "../store/Store.ts";
 import {Button} from "../component/Button.tsx";
 import {Crop} from "../model/Crop.ts";
 
@@ -38,7 +38,7 @@ export const CropForm = () => {
         }
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [cropCode, setCropCode] = useState("");
     const [cropCommonName, setCropCommonName] = useState("");
     const [cropScientificName, setCropScientificName] = useState("");
@@ -46,15 +46,23 @@ export const CropForm = () => {
     const [cropSeason, setCropSeason] = useState("");
     const [fieldCode, setFieldCode] = useState("");
     const [cropImage, setCropImage] = useState("");
-    const crops = useSelector((state:RootState) => state.crop.crops);
+    const crops = useSelector((state) => state.crop);
+
+    useEffect(() => {
+        if (crops.length === 0){
+            dispatch(getCrop())
+        }
+        console.log("dispatch ");
+    }, [lastCropNumber,dispatch]);
 
     //add crop
     function AddCrop(e) {
         e.preventDefault();
         const newCrop = {cropCode, cropCommonName, cropScientificName, cropImage, category, cropSeason, fieldCode};
-        dispatch(setCrop(newCrop));
-        console.log(newCrop);
+        dispatch(saveCrop(newCrop));
+        getCrop();
         alert("Crop was added Successfully!!.");
+        localStorage.setItem("Crop", JSON.stringify(newCrop));
         clear();
         setShowForm(false);
     }
@@ -70,11 +78,12 @@ export const CropForm = () => {
         setShowForm(true);
     }
 
-    function UpdateCrop(){
+    function updateCrop(){
         const updatedCrops = {cropCode, cropCommonName,cropScientificName,cropImage,category,cropSeason,fieldCode};
-        dispatch(updateCrop(updatedCrops));
+        dispatch(UpdateCrop(updatedCrops));
         console.log(updatedCrops);
         alert("Update crop successfully!");
+        getCrop();
         clear();
         setShowForm(false);
     }
@@ -169,7 +178,7 @@ export const CropForm = () => {
                         </div>
                         <Button label="Save" onClick={AddCrop}
                                 className="px-4 py-2 rounded-full m-4 bg-green-500 text-white  hover:bg-green-600"/>
-                        <Button label="Update" onClick={UpdateCrop}
+                        <Button label="Update" onClick={updateCrop}
                                 className="px-4 py-2 rounded-full m-4 bg-blue-500 text-white  hover:bg-blue-600"/>
                     </form>
                 </div>

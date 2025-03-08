@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {deleteMonitoring, setMonitoring, updateMonitoring} from "../reducer/MonitoringReducer.ts";
+import {AppDispatch} from "../store/Store.ts";
+import {deleteMonitoring, getMonitoring, saveMonitoring, UpdateMonitoring} from "../reducer/MonitoringReducer.ts";
 import {Monitoring} from "../model/Monitoring.ts";
 
 export const MonitoringForm = () => {
@@ -39,19 +39,25 @@ export const MonitoringForm = () => {
         }
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [logCode, setLogCode] = useState("");
     const [logDate, setLogDate] = useState("");
     const [logDetails, setLogDetail] = useState("");
     const [cropCode, setCropCode] = useState("");
     const [observedImage, setObservedImage] = useState("");
-    const monitorings = useSelector((state:RootState) => state.monitoring.monitorings);
+    const monitorings = useSelector((state) => state.monitoring);
 
+    useEffect(() => {
+        if (monitorings.length === 0){
+            dispatch(getMonitoring());
+        }
+        console.log("dispatch");
+    }, [lastLogNumber, dispatch]);
     //add monitoring
     function AddMonitoring(e) {
         e.preventDefault();
         const newMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
-        dispatch(setMonitoring(newMonitoring));
+        dispatch(saveMonitoring(newMonitoring));
         alert("Log was added Successfully!");
         clear();
         setShowForm(false);
@@ -67,9 +73,9 @@ export const MonitoringForm = () => {
         setShowForm(true);
     }
 
-    function UpdateMonitoring() {
+    function updateMonitoring() {
         const updatedMonitoring = {logCode,logDate,logDetails,cropCode,observedImage};
-        dispatch(updateMonitoring(updatedMonitoring));
+        dispatch(UpdateMonitoring(updatedMonitoring));
         alert("Log was updated Successfully!");
         clear();
         setShowForm(false);
@@ -137,7 +143,7 @@ export const MonitoringForm = () => {
                         <Button label="Save"
                                 className="px-4 py-2 m-4 bg-green-500 text-white rounded-full hover:bg-green-600" onClick={AddMonitoring}/>
                         <Button label="Update"
-                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={UpdateMonitoring}/>
+                                className="px-4 py-2 m-4 bg-blue-500 text-white rounded-full hover:bg-blue-600" onClick={updateMonitoring}/>
                     </form>
                 </div>
             )}

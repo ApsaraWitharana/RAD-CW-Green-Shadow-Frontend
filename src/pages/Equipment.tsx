@@ -1,8 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../component/Button.tsx";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
-import {deleteEquipment, setEquipment, updateEquipment} from "../reducer/EquipmentReducer.ts";
+import {AppDispatch, RootState} from "../store/Store.ts";
+import {deleteEquipment, getEquipment, saveEquipment, updateEquipment} from "../reducer/EquipmentReducer.ts";
 import {Equipment} from "../model/Equipment.ts";
 
 
@@ -25,24 +25,30 @@ export const EquipmentForm = () => {
         setShowForm(!showForm);
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const [equipmentCode, setEquipmentCode] = useState("");
     const [equipmentName, setEquipmentName] = useState("");
     const [equipmentType, setEquipmentType] = useState("");
     const [status, setStatus] = useState("");
     const [fieldCode, setFieldCode] = useState("");
     const [staffCode,setStaffCode] = useState("");
-    const equipments = useSelector((state:RootState) => state.equipment.equipments)
+    const equipments = useSelector((state:RootState) => state.equipment)
+
+    useEffect(() => {
+        if (equipments.length === 0){
+            dispatch(getEquipment());
+        }
+        console.log("dispatch ");
+    }, [lastEquipmentNumber,dispatch]);
 
     //add equipment
     function AddEquipment(e) {
         e.preventDefault();
         const newEquipment = {equipmentCode,equipmentName,equipmentType,status,fieldCode,staffCode}
-        dispatch(setEquipment(newEquipment))
+        dispatch(saveEquipment(newEquipment))
         alert("Successfully Added Equipment");
         clear();
         setShowForm(false);
-
     }
     //update equipment
     function handleRowClick(equipment: Equipment) {
@@ -76,7 +82,6 @@ export const EquipmentForm = () => {
         setEquipmentType("");
         setFieldCode("");
         setStaffCode("");
-
     }
     return (
         <div className="main">
