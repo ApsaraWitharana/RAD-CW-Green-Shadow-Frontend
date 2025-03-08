@@ -6,14 +6,14 @@ import axios from "axios";
 export const initialState: Monitoring [] = [];
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/monitoring',
+    baseURL: 'http://localhost:3000/log',
     headers: {
         "Content-Type": "application/json",
     },
 });
 
 export const saveMonitoring = createAsyncThunk(
-    'monitoring/add',
+    'log/add',
     async (monitoring: Monitoring) => {
         try {
             const resp = await api.post('/add', monitoring)
@@ -25,7 +25,7 @@ export const saveMonitoring = createAsyncThunk(
 );
 
 export const UpdateMonitoring = createAsyncThunk(
-    'monitoring/update',
+    'log/update',
     async (monitoring: Monitoring) => {
         try {
             const resp = await api.put(`/update/${monitoring.logCode}`, monitoring)
@@ -37,7 +37,7 @@ export const UpdateMonitoring = createAsyncThunk(
 );
 
 export const getMonitoring = createAsyncThunk(
-    'monitoring/get',
+    'log/get',
     async () => {
         try {
             const resp = await api.get('/get');
@@ -49,7 +49,7 @@ export const getMonitoring = createAsyncThunk(
 );
 
 export const deleteMonitoring = createAsyncThunk(
-    'monitoring/delete',
+    'log/delete',
     async (logCode: string) => {
         try {
             const resp = await api.delete(`/delete/${logCode}`);
@@ -62,7 +62,7 @@ export const deleteMonitoring = createAsyncThunk(
 
 
 const monitoringSlice = createSlice({
-    name: "monitoring",
+    name: "log",
     initialState,
     reducers: {
         addMonitoring(state, action: PayloadAction<Monitoring>) {

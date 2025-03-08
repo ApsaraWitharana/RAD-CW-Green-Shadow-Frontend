@@ -5,14 +5,14 @@ import axios from "axios";
 export const initialState: Vehicle [] = [];
 
 const api = axios.create({
-    baseURL: 'https://localhost:3000/vehicles',
+    baseURL: 'http://localhost:3000/vehicle',
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
 export const saveVehicle = createAsyncThunk(
-    'vehicles/saveVehicle',
+    'vehicles/add',
     async (vehicle: Vehicle) => {
         try {
             const resp = await api.post('/add', vehicle)
